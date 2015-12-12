@@ -29,7 +29,7 @@ require_once('template-tags.php');
 require_once( 'customizer.php');
 require_once('bootstrap.php');
 require_once('functions.php');
+require_once('shortcodes.php');
 require_once('nav-menu.php');
 require_once('sidebars.php');
-require_once('getFacebookCommentsAndSharedPosts.php');
 ?>
