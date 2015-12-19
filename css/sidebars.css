@@ -11,7 +11,7 @@
 .sidebars-sortable.inactives a.remove, .sidebars-sortable.actives div:first-child a.up, .sidebars-sortable.actives div:last-child a.down, .sidebars-sortable.inactives a.up, .sidebars-sortable.inactives a.down, .sidebars-sortable.actives a.add {
 	display: none;
 }
-.sidebars-sortable div a:hover, a.buttons:hover, a.buttons.activo {background-color: #e1e1e1;}
+.sidebars-sortable div a:hover, a.buttons:hover, a.buttons.active {background-color: #e1e1e1;}
 input.escsidebars {}
 div.new_sidebar {display: none;background: #E1E1E1;padding: 5px;}
 .new_sidebar > img.loading {display: none;float: left;}

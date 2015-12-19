@@ -9,13 +9,13 @@
  * @since Twenty Fifteen 1.0
  */
 
-if ( ! function_exists( 'esolutions_comment_nav' ) ) :
+if ( ! function_exists( '_esc_comment_nav' ) ) :
 /**
  * Display navigation to next/previous comments when applicable.
  *
  * @since Twenty Fifteen 1.0
  */
-function esolutions_comment_nav() {
+function _esc_comment_nav() {
 	// Are there comments to navigate through?
 	if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
 	?>
@@ -38,13 +38,13 @@ function esolutions_comment_nav() {
 }
 endif;
 
-if ( ! function_exists( 'esolutions_entry_meta' ) ) :
+if ( ! function_exists( '_esc_entry_meta' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags.
  *
  * @since Twenty Fifteen 1.0
  */
-function esolutions_entry_meta($position='footer') {
+function _esc_entry_meta($position='footer') {
 	if($position=='header'){
 		if ( is_sticky() && is_home() && ! is_paged() ) {
 			printf( '<span class="sticky-post">%s</span>', __( 'Featured ', 'esolutions' ) );
@@ -93,7 +93,7 @@ function esolutions_entry_meta($position='footer') {
 		}
 
 		$categories_list = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'esolutions' ) );
-		if ( $categories_list && esolutions_categorized_blog() ) {
+		if ( $categories_list && _esc_categorized_blog() ) {
 			printf( '  <i class="fa fa-folder-open"></i> <span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
 				_x( 'Categories', 'Used before category names.', 'esolutions' ),
 				$categories_list
@@ -136,8 +136,8 @@ endif;
  *
  * @return bool True of there is more than one category, false otherwise.
  */
-function esolutions_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'esolutions_categories' ) ) ) {
+function _esc_categorized_blog() {
+	if ( false === ( $all_the_cool_cats = get_transient( '_esc_categories' ) ) ) {
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
@@ -150,31 +150,31 @@ function esolutions_categorized_blog() {
 		// Count the number of categories that are attached to the posts.
 		$all_the_cool_cats = count( $all_the_cool_cats );
 
-		set_transient( 'esolutions_categories', $all_the_cool_cats );
+		set_transient( '_esc_categories', $all_the_cool_cats );
 	}
 
 	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so esolutions_categorized_blog should return true.
+		// This blog has more than 1 category so _esc_categorized_blog should return true.
 		return true;
 	} else {
-		// This blog has only 1 category so esolutions_categorized_blog should return false.
+		// This blog has only 1 category so _esc_categorized_blog should return false.
 		return false;
 	}
 }
 
 /**
- * Flush out the transients used in {@see esolutions_categorized_blog()}.
+ * Flush out the transients used in {@see _esc_categorized_blog()}.
  *
  * @since Twenty Fifteen 1.0
  */
-function esolutions_category_transient_flusher() {
+function _esc_category_transient_flusher() {
 	// Like, beat it. Dig?
-	delete_transient( 'esolutions_categories' );
+	delete_transient( '_esc_categories' );
 }
-add_action( 'edit_category', 'esolutions_category_transient_flusher' );
-add_action( 'save_post',     'esolutions_category_transient_flusher' );
+add_action( 'edit_category', '_esc_category_transient_flusher' );
+add_action( 'save_post',     '_esc_category_transient_flusher' );
 
-if ( ! function_exists( 'esolutions_post_thumbnail' ) ) :
+if ( ! function_exists( '_esc_post_thumbnail' ) ) :
 /**
  * Display an optional post thumbnail.
  *
@@ -183,7 +183,7 @@ if ( ! function_exists( 'esolutions_post_thumbnail' ) ) :
  *
  * @since Twenty Fifteen 1.0
  */
-function esolutions_post_thumbnail() {
+function _esc_post_thumbnail() {
 	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 		return;
 	}
@@ -207,7 +207,7 @@ function esolutions_post_thumbnail() {
 }
 endif;
 
-if ( ! function_exists( 'esolutions_get_link_url' ) ) :
+if ( ! function_exists( '_esc_get_link_url' ) ) :
 /**
  * Return the post URL.
  *
@@ -219,14 +219,14 @@ if ( ! function_exists( 'esolutions_get_link_url' ) ) :
  *
  * @return string The Link format URL.
  */
-function esolutions_get_link_url() {
+function _esc_get_link_url() {
 	$has_url = get_url_in_content( get_the_content() );
 
 	return $has_url ? $has_url : apply_filters( 'the_permalink', get_permalink() );
 }
 endif;
 
-if ( ! function_exists( 'esolutions_excerpt_more' ) && ! is_admin() ) :
+if ( ! function_exists( '_esc_excerpt_more' ) && ! is_admin() ) :
 /**
  * Replaces "[...]" (appended to automatically generated excerpts) with ... and a 'Continue reading' link.
  *
@@ -234,7 +234,7 @@ if ( ! function_exists( 'esolutions_excerpt_more' ) && ! is_admin() ) :
  *
  * @return string 'Continue reading' link prepended with an ellipsis.
  */
-function esolutions_excerpt_more( $more ) {
+function _esc_excerpt_more( $more ) {
 	$link = sprintf( '<a href="%1$s" class="more-link">%2$s</a>',
 		esc_url( get_permalink( get_the_ID() ) ),
 		/* translators: %s: Name of current post */
@@ -242,5 +242,5 @@ function esolutions_excerpt_more( $more ) {
 		);
 	return ' &hellip; ' . $link;
 }
-add_filter( 'excerpt_more', 'esolutions_excerpt_more' );
+add_filter( 'excerpt_more', '_esc_excerpt_more' );
 endif;

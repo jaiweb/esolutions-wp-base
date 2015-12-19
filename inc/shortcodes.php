@@ -2,10 +2,10 @@
 if ( !defined('ABSPATH') )
     die ( 'No direct script access allowed' );
 
-add_shortcode('_testimonials','esolutions_shortcode__testimonials');
+add_shortcode('_testimonials','_esc_shortcode__testimonials');
 add_shortcode('_chart','esc_chart');
 function esc_chart( $atts, $content = null ) {
-	$a	=	esolutions_shortcode_atts($atts);
+	$a	=	_esc_shortcode_atts($atts);
 	if(!$a['data'])
 		$a['data']	=	'1,1,3,2,5,4,7';
 	
@@ -18,8 +18,8 @@ function esc_chart( $atts, $content = null ) {
 <?php
 	return ob_get_clean();
 }
-function esolutions_shortcode__testimonials( $atts, $content = null ) {
-	$a	=	esolutions_shortcode_atts($atts);
+function _esc_shortcode__testimonials( $atts, $content = null ) {
+	$a	=	_esc_shortcode_atts($atts);
 	ob_start();
 ?>
 <section>
@@ -63,10 +63,10 @@ function esolutions_shortcode__testimonials( $atts, $content = null ) {
 <?php
 	return ob_get_clean();
 }
-add_shortcode('_our_tools','esolutions_shortcode__tools');
-function esolutions_shortcode__tools( $atts ) {
-	$a	=	esolutions_shortcode_atts($atts);
-	$_images	=	esolutions_shortcode__images() . '/tools';
+add_shortcode('_our_tools','_esc_shortcode__tools');
+function _esc_shortcode__tools( $atts ) {
+	$a	=	_esc_shortcode_atts($atts);
+	$_images	=	_esc_shortcode__images() . '/tools';
 	ob_start();
 ?>
 <section id="our-tools">
@@ -115,10 +115,10 @@ function esolutions_shortcode__tools( $atts ) {
 <?php
 	return ob_get_clean();
 }
-add_shortcode('_gallery_grid','esolutions_shortcode__gallery_grid');
-function esolutions_shortcode__gallery_grid( $atts ) {
-	$a	=	esolutions_shortcode_atts($atts);
-	$_images	=	esolutions_shortcode__images();
+add_shortcode('_gallery_grid','_esc_shortcode__gallery_grid');
+function _esc_shortcode__gallery_grid( $atts ) {
+	$a	=	_esc_shortcode_atts($atts);
+	$_images	=	_esc_shortcode__images();
 	ob_start();
 ?>
 <section class="esc-gallery-grid clearfix esc-block<?php echo $a['effect'] ?>"<?php echo $a['delay'] ?>>
@@ -187,10 +187,10 @@ function esolutions_shortcode__gallery_grid( $atts ) {
 </section><?php
 	return ob_get_clean();
 }
-add_shortcode('_gallery','esolutions_shortcode__gallery');
-function esolutions_shortcode__gallery( $atts ) {
-	$a	=	esolutions_shortcode_atts($atts);
-	$_images	=	esolutions_shortcode__images();
+add_shortcode('_gallery','_esc_shortcode__gallery');
+function _esc_shortcode__gallery( $atts ) {
+	$a	=	_esc_shortcode_atts($atts);
+	$_images	=	_esc_shortcode__images();
 	ob_start();
 ?>
 <section class="esc-gallery clearfix<?php echo $a['effect'] ?>"<?php echo $a['delay'] ?>>
@@ -232,13 +232,13 @@ function esolutions_shortcode__gallery( $atts ) {
 </section><?php
 	return ob_get_clean();
 }
-add_shortcode('_images', 'esolutions_shortcode__images');
-function esolutions_shortcode__images() {
+add_shortcode('_images', '_esc_shortcode__images');
+function _esc_shortcode__images() {
 	return get_template_directory_uri() . '/images';
 }
-add_shortcode('_block', 'esolutions_shortcode__block');
-function esolutions_shortcode__block( $atts, $content = null ) {
-	$a	=	esolutions_shortcode_atts($atts);
+add_shortcode('_block', '_esc_shortcode__block');
+function _esc_shortcode__block( $atts, $content = null ) {
+	$a	=	_esc_shortcode_atts($atts);
 	ob_start();
 ?>
 <section class="esc-block<?php echo $a['class'] ?>"<?php echo $a['id'] ?>>
@@ -247,9 +247,9 @@ function esolutions_shortcode__block( $atts, $content = null ) {
 <?php
 	return ob_get_clean();
 }
-add_shortcode('_section', 'esolutions_shortcode__section');
-function esolutions_shortcode__section( $atts, $content = null ) {
-	$a	=	esolutions_shortcode_atts($atts, array('button_title'	=>	'',	'button_link'	=>	''));
+add_shortcode('_section', '_esc_shortcode__section');
+function _esc_shortcode__section( $atts, $content = null ) {
+	$a	=	_esc_shortcode_atts($atts, array('button_title'	=>	'',	'button_link'	=>	''));
 	ob_start();
 ?>
 <section class="clearfix section<?php echo $a['effect'].$a['class'] ?>"<?php echo $a['delay'] ?><?php echo $a['id'] ?><?php //echo $a['style'] ?>>
@@ -268,8 +268,8 @@ function esolutions_shortcode__section( $atts, $content = null ) {
 <?php
 	return ob_get_clean();
 }
-function esolutions_shortcode__section_title( $atts, $content = null ) {
-	$a	=	esolutions_shortcode_atts($atts);
+function _esc_shortcode__section_title( $atts, $content = null ) {
+	$a	=	_esc_shortcode_atts($atts);
 	ob_start();
 ?>
 	<header class="section-header text-center">
@@ -278,11 +278,11 @@ function esolutions_shortcode__section_title( $atts, $content = null ) {
 <?php
 	return ob_get_clean();
 }
-add_shortcode('_section_title', 'esolutions_shortcode__section_title');
+add_shortcode('_section_title', '_esc_shortcode__section_title');
 
-add_shortcode('_banner','esolutions_shortcode__banner');
-function esolutions_shortcode__banner( $atts, $content = null ) {
-	$a	=	esolutions_shortcode_atts($atts, array('image'	=>	''));
+add_shortcode('_banner','_esc_shortcode__banner');
+function _esc_shortcode__banner( $atts, $content = null ) {
+	$a	=	_esc_shortcode_atts($atts, array('image'	=>	''));
 	$content	=	do_shortcode($content);
 	ob_start();
 ?>
@@ -296,9 +296,9 @@ function esolutions_shortcode__banner( $atts, $content = null ) {
 <?php
 	return ob_get_clean();
 }
-add_shortcode('_covers','esolutions_shortcode__covers');
-function esolutions_shortcode__covers( $atts, $content = null ) {
-	$a	=	esolutions_shortcode_atts($atts, array('image'	=>	''));
+add_shortcode('_covers','_esc_shortcode__covers');
+function _esc_shortcode__covers( $atts, $content = null ) {
+	$a	=	_esc_shortcode_atts($atts, array('image'	=>	''));
 	ob_start();
 ?>
 <section class="clearfix section<?php echo $a['effect'].$a['class'] ?>"<?php echo $a['delay'] ?><?php echo $a['id'] ?>>
@@ -438,8 +438,8 @@ function esolutions_shortcode__covers( $atts, $content = null ) {
 <?php
 	return ob_get_clean();
 }
-function esolutions_shortcode_covers_wp_footer(){}
-//add_action('wp_footer', 'esolutions_shortcode_covers_wp_footer',200);
+function _esc_shortcode_covers_wp_footer(){}
+//add_action('wp_footer', '_esc_shortcode_covers_wp_footer',200);
 //Enable shortcodes in widgets
 if ( !is_admin() )
     add_filter('widget_text', 'do_shortcode', 11);

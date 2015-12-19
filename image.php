@@ -40,7 +40,7 @@ get_header(); ?>
 								 *
 								 * @param string $image_size Image size. Default 'large'.
 								 */
-								$image_size = apply_filters( 'esolutions_attachment_size', 'large' );
+								$image_size = apply_filters( '_esc_attachment_size', 'large' );
 
 								echo wp_get_attachment_image( get_the_ID(), $image_size );
 							?>
@@ -67,7 +67,7 @@ get_header(); ?>
 					</div><!-- .entry-content -->
 
 					<footer class="entry-footer">
-						<?php esolutions_entry_meta(); ?>
+						<?php _esc_entry_meta(); ?>
 						<?php edit_post_link( __( 'Edit', 'esolutions' ), '<span class="edit-link">', '</span>' ); ?>
 					</footer><!-- .entry-footer -->
 

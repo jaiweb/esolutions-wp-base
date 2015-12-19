@@ -24,7 +24,6 @@
  * @subpackage Twenty_Fifteen
  * @since Twenty Fifteen 1.0
  */
-
 /**
  * Set the content width based on the theme's design and stylesheet.
  *
@@ -33,15 +32,13 @@
 if ( ! isset( $content_width ) ) {
 	$content_width = 660;
 }
-
 /**
  * Twenty Fifteen only works in WordPress 4.1 or later.
  */
 if ( version_compare( $GLOBALS['wp_version'], '4.1-alpha', '<' ) ) {
 	require get_template_directory() . '/inc/back-compat.php';
 }
-
-if ( ! function_exists( 'esolutions_setup' ) ) :
+if ( ! function_exists( '_esc_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -51,8 +48,7 @@ if ( ! function_exists( 'esolutions_setup' ) ) :
  *
  * @since Twenty Fifteen 1.0
  */
-function esolutions_setup() {
-
+function _esc_setup() {
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
@@ -60,10 +56,8 @@ function esolutions_setup() {
 	 * to change 'esolutions' to the name of your theme in all the template files
 	 */
 	load_theme_textdomain( 'esolutions', get_template_directory() . '/languages' );
-
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
-
 	/*
 	 * Let WordPress manage the document title.
 	 * By adding theme support, we declare that this theme does not use a
@@ -71,7 +65,6 @@ function esolutions_setup() {
 	 * provide it for us.
 	 */
 	add_theme_support( 'title-tag' );
-
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
 	 *
@@ -79,13 +72,11 @@ function esolutions_setup() {
 	 */
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 825, 510, true );
-
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu',      'esolutions' ),
 		'social'  => __( 'Social Links Menu', 'esolutions' ),
 	) );
-
 	/*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.
@@ -93,7 +84,6 @@ function esolutions_setup() {
 	add_theme_support( 'html5', array(
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
 	) );
-
 	/*
 	 * Enable support for Post Formats.
 	 *
@@ -102,25 +92,21 @@ function esolutions_setup() {
 	add_theme_support( 'post-formats', array(
 		'aside', 'image', 'video', 'quote', 'link', 'gallery', 'status', 'audio', 'chat'
 	) );
-
-	$color_scheme  = esolutions_get_color_scheme();
+	$color_scheme  = _esc_get_color_scheme();
 	$default_color = trim( $color_scheme[0], '#' );
-
 	// Setup the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'esolutions_custom_background_args', array(
+	add_theme_support( 'custom-background', apply_filters( '_esc_custom_background_args', array(
 		'default-color'      => $default_color,
 		'default-attachment' => 'fixed',
 	) ) );
-
 	/*
 	 * This theme styles the visual editor to resemble the theme style,
 	 * specifically font, colors, icons, and column width.
 	 */
-	add_editor_style( array( 'css/editor-style.css', 'genericons/genericons.css', esolutions_fonts_url() ) );
+	add_editor_style( array( 'css/editor-style.css', 'genericons/genericons.css', _esc_fonts_url() ) );
 }
-endif; // esolutions_setup
-add_action( 'after_setup_theme', 'esolutions_setup' );
-
+endif; // _esc_setup
+add_action( 'after_setup_theme', '_esc_setup' );
 /**
  * Register widget area.
  *
@@ -128,16 +114,7 @@ add_action( 'after_setup_theme', 'esolutions_setup' );
  *
  * @link https://codex.wordpress.org/Function_Reference/register_sidebar
  */
-function esolutions_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'Widget Area Pages', 'esolutions' ),
-		'id'            => 'sidebar-page',
-		'description'   => __( 'Add widgets here to appear in your sidebar.', 'esolutions' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
+function _esc_widgets_init() {
 	register_sidebar( array(
 		'name'          => __( 'Widget Area Blog', 'esolutions' ),
 		'id'            => 'sidebar-blog',
@@ -147,10 +124,18 @@ function esolutions_widgets_init() {
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	) );
+	register_sidebar( array(
+		'name'          => __( 'Widget Area Pages', 'esolutions' ),
+		'id'            => 'sidebar-page',
+		'description'   => __( 'Add widgets here to appear in your sidebar.', 'esolutions' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
 }
-add_action( 'widgets_init', 'esolutions_widgets_init' );
-
-if ( ! function_exists( 'esolutions_fonts_url' ) ) :
+add_action( 'widgets_init', '_esc_widgets_init' );
+if ( ! function_exists( '_esc_fonts_url' ) ) :
 /**
  * Register Google fonts for Twenty Fifteen.
  *
@@ -158,29 +143,24 @@ if ( ! function_exists( 'esolutions_fonts_url' ) ) :
  *
  * @return string Google fonts URL for the theme.
  */
-function esolutions_fonts_url() {
+function _esc_fonts_url() {
 	$fonts_url = '';
 	$fonts     = array();
 	$subsets   = 'latin,latin-ext';
-
 	/* translators: If there are characters in your language that are not supported by Noto Sans, translate this to 'off'. Do not translate into your own language. */
 	if ( 'off' !== _x( 'on', 'Noto Sans font: on or off', 'esolutions' ) ) {
 		$fonts[] = 'Noto Sans:400italic,700italic,400,700';
 	}
-
 	/* translators: If there are characters in your language that are not supported by Noto Serif, translate this to 'off'. Do not translate into your own language. */
 	if ( 'off' !== _x( 'on', 'Noto Serif font: on or off', 'esolutions' ) ) {
 		$fonts[] = 'Noto Serif:400italic,700italic,400,700';
 	}
-
 	/* translators: If there are characters in your language that are not supported by Inconsolata, translate this to 'off'. Do not translate into your own language. */
 	if ( 'off' !== _x( 'on', 'Inconsolata font: on or off', 'esolutions' ) ) {
 		$fonts[] = 'Inconsolata:400,700';
 	}
-
 	/* translators: To add an additional character subset specific to your language, translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language. */
 	$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'esolutions' );
-
 	if ( 'cyrillic' == $subset ) {
 		$subsets .= ',cyrillic,cyrillic-ext';
 	} elseif ( 'greek' == $subset ) {
@@ -190,52 +170,42 @@ function esolutions_fonts_url() {
 	} elseif ( 'vietnamese' == $subset ) {
 		$subsets .= ',vietnamese';
 	}
-
 	if ( $fonts ) {
 		$fonts_url = add_query_arg( array(
 			'family' => urlencode( implode( '|', $fonts ) ),
 			'subset' => urlencode( $subsets ),
 		), '//fonts.googleapis.com/css' );
 	}
-
 	return $fonts_url;
 }
 endif;
-
 /**
  * Enqueue scripts and styles.
  *
  * @since Twenty Fifteen 1.0
  */
-function esolutions_scripts() {
+function _esc_scripts() {
 	// Add custom fonts, used in the main stylesheet.
-	wp_enqueue_style( 'esolutions-fonts', esolutions_fonts_url(), array(), null );
-	
+	wp_enqueue_style( 'esolutions-fonts', _esc_fonts_url(), array(), null );
 	wp_enqueue_style( 'esolutions-fonts-genericons', get_template_directory_uri() . '/css/genericons.css', array(), '3.2' );
 	wp_enqueue_style( 'esolutions-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '20141010' );
 	wp_enqueue_style( 'esolutions-fonts', get_template_directory_uri() . '/css/fonts.css', array(), '20141010' );	
 	wp_enqueue_style( 'esolutions-bs', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '20141010' );
 	// Load our main stylesheet.
 	wp_enqueue_style( 'esolutions-style', get_stylesheet_uri() );
-
 	// Load the Internet Explorer specific stylesheet.
 	wp_enqueue_style( 'esolutions-ie', get_template_directory_uri() . '/css/ie.css', array( 'esolutions-style' ), '20141010' );
 	wp_style_add_data( 'esolutions-ie', 'conditional', 'lt IE 9' );
-
 	// Load the Internet Explorer 7 specific stylesheet.
 	wp_enqueue_style( 'esolutions-ie7', get_template_directory_uri() . '/css/ie7.css', array( 'esolutions-style' ), '20141010' );
 	wp_style_add_data( 'esolutions-ie7', 'conditional', 'lt IE 8' );
-
 	wp_enqueue_script( 'esolutions-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20141010', true );
-
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-
 	if ( is_singular() && wp_attachment_is_image() ) {
 		wp_enqueue_script( 'esolutions-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20141010' );
 	}
-
 	wp_enqueue_script( 'esolutions-bs', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '20141212', true );
 	wp_enqueue_script( 'esolutions-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20141212', true );
 	wp_localize_script( 'esolutions-script', 'screenReaderText', array(
@@ -243,8 +213,7 @@ function esolutions_scripts() {
 		'collapse' => '<span class="screen-reader-text">' . __( 'collapse child menu', 'esolutions' ) . '</span>',
 	) );
 }
-add_action( 'wp_enqueue_scripts', 'esolutions_scripts' );
-
+add_action( 'wp_enqueue_scripts', '_esc_scripts' );
 /**
  * Add featured image as background image to post navigation elements.
  *
@@ -252,19 +221,16 @@ add_action( 'wp_enqueue_scripts', 'esolutions_scripts' );
  *
  * @see wp_add_inline_style()
  */
-function esolutions_post_nav_background() {
+function _esc_post_nav_background() {
 	if ( ! is_single() ) {
 		return;
 	}
-
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
 	$css      = '';
-
 	if ( is_attachment() && 'attachment' == $previous->post_type ) {
 		return;
 	}
-
 	if ( $previous &&  has_post_thumbnail( $previous->ID ) ) {
 		$prevthumb = wp_get_attachment_image_src( get_post_thumbnail_id( $previous->ID ), 'post-thumbnail' );
 		$css .= '
@@ -273,7 +239,6 @@ function esolutions_post_nav_background() {
 			.post-navigation .nav-previous a:before { background-color: rgba(0, 0, 0, 0.4); }
 		';
 	}
-
 	if ( $next && has_post_thumbnail( $next->ID ) ) {
 		$nextthumb = wp_get_attachment_image_src( get_post_thumbnail_id( $next->ID ), 'post-thumbnail' );
 		$css .= '
@@ -282,11 +247,9 @@ function esolutions_post_nav_background() {
 			.post-navigation .nav-next a:before { background-color: rgba(0, 0, 0, 0.4); }
 		';
 	}
-
 	wp_add_inline_style( 'esolutions-style', $css );
 }
-add_action( 'wp_enqueue_scripts', 'esolutions_post_nav_background' );
-
+add_action( 'wp_enqueue_scripts', '_esc_post_nav_background' );
 /**
  * Display descriptions in main navigation.
  *
@@ -298,15 +261,13 @@ add_action( 'wp_enqueue_scripts', 'esolutions_post_nav_background' );
  * @param array   $args        wp_nav_menu() arguments.
  * @return string Menu item with possible description.
  */
-function esolutions_nav_description( $item_output, $item, $depth, $args ) {
+function _esc_nav_description( $item_output, $item, $depth, $args ) {
 	if ( 'primary' == $args->theme_location && $item->description ) {
 		$item_output = str_replace( $args->link_after . '</a>', '<div class="menu-item-description">' . $item->description . '</div>' . $args->link_after . '</a>', $item_output );
 	}
-
 	return $item_output;
 }
-add_filter( 'walker_nav_menu_start_el', 'esolutions_nav_description', 10, 4 );
-
+add_filter( 'walker_nav_menu_start_el', '_esc_nav_description', 10, 4 );
 /**
  * Add a `screen-reader-text` class to the search form's submit button.
  *
@@ -315,9 +276,8 @@ add_filter( 'walker_nav_menu_start_el', 'esolutions_nav_description', 10, 4 );
  * @param string $html Search form HTML.
  * @return string Modified search form HTML.
  */
-function esolutions_search_form_modify( $html ) {
+function _esc_search_form_modify( $html ) {
 	return str_replace( 'class="search-submit"', 'class="search-submit screen-reader-text"', $html );
 }
-add_filter( 'get_search_form', 'esolutions_search_form_modify' );
-
+add_filter( 'get_search_form', '_esc_search_form_modify' );
 require get_template_directory() . '/inc/init.php';

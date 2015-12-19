@@ -14,8 +14,8 @@
  *
  * @param WP_Customize_Manager $wp_customize Customizer object.
  */
-function esolutions_customize_register( $wp_customize ) {
-	$color_scheme = esolutions_get_color_scheme();
+function _esc_customize_register( $wp_customize ) {
+	$color_scheme = _esc_get_color_scheme();
 
 	$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
@@ -23,7 +23,7 @@ function esolutions_customize_register( $wp_customize ) {
 	// Add color scheme setting and control.
 	$wp_customize->add_setting( 'color_scheme', array(
 		'default'           => 'default',
-		'sanitize_callback' => 'esolutions_sanitize_color_scheme',
+		'sanitize_callback' => '_esc_sanitize_color_scheme',
 		'transport'         => 'postMessage',
 	) );
 
@@ -31,7 +31,7 @@ function esolutions_customize_register( $wp_customize ) {
 		'label'    => __( 'Base Color Scheme', 'esolutions' ),
 		'section'  => 'colors',
 		'type'     => 'select',
-		'choices'  => esolutions_get_color_scheme_choices(),
+		'choices'  => _esc_get_color_scheme_choices(),
 		'priority' => 1,
 	) );
 
@@ -67,12 +67,12 @@ function esolutions_customize_register( $wp_customize ) {
 	// Add an additional description to the header image section.
 	$wp_customize->get_section( 'header_image' )->description = __( 'Applied to the header on small screens and the sidebar on wide screens.', 'esolutions' );
 }
-add_action( 'customize_register', 'esolutions_customize_register', 11 );
+add_action( 'customize_register', '_esc_customize_register', 11 );
 
 /**
  * Register color schemes for Twenty Fifteen.
  *
- * Can be filtered with {@see 'esolutions_color_schemes'}.
+ * Can be filtered with {@see '_esc_color_schemes'}.
  *
  * The order of colors in a colors array:
  * 1. Main Background Color.
@@ -86,8 +86,8 @@ add_action( 'customize_register', 'esolutions_customize_register', 11 );
  *
  * @return array An associative array of color scheme options.
  */
-function esolutions_get_color_schemes() {
-	return apply_filters( 'esolutions_color_schemes', array(
+function _esc_get_color_schemes() {
+	return apply_filters( '_esc_color_schemes', array(
 		'default' => array(
 			'label'  => __( 'Default', 'esolutions' ),
 			'colors' => array(
@@ -157,7 +157,7 @@ function esolutions_get_color_schemes() {
 	) );
 }
 
-if ( ! function_exists( 'esolutions_get_color_scheme' ) ) :
+if ( ! function_exists( '_esc_get_color_scheme' ) ) :
 /**
  * Get the current Twenty Fifteen color scheme.
  *
@@ -165,9 +165,9 @@ if ( ! function_exists( 'esolutions_get_color_scheme' ) ) :
  *
  * @return array An associative array of either the current or default color scheme hex values.
  */
-function esolutions_get_color_scheme() {
+function _esc_get_color_scheme() {
 	$color_scheme_option = get_theme_mod( 'color_scheme', 'default' );
-	$color_schemes       = esolutions_get_color_schemes();
+	$color_schemes       = _esc_get_color_schemes();
 
 	if ( array_key_exists( $color_scheme_option, $color_schemes ) ) {
 		return $color_schemes[ $color_scheme_option ]['colors'];
@@ -175,9 +175,9 @@ function esolutions_get_color_scheme() {
 
 	return $color_schemes['default']['colors'];
 }
-endif; // esolutions_get_color_scheme
+endif; // _esc_get_color_scheme
 
-if ( ! function_exists( 'esolutions_get_color_scheme_choices' ) ) :
+if ( ! function_exists( '_esc_get_color_scheme_choices' ) ) :
 /**
  * Returns an array of color scheme choices registered for Twenty Fifteen.
  *
@@ -185,8 +185,8 @@ if ( ! function_exists( 'esolutions_get_color_scheme_choices' ) ) :
  *
  * @return array Array of color schemes.
  */
-function esolutions_get_color_scheme_choices() {
-	$color_schemes                = esolutions_get_color_schemes();
+function _esc_get_color_scheme_choices() {
+	$color_schemes                = _esc_get_color_schemes();
 	$color_scheme_control_options = array();
 
 	foreach ( $color_schemes as $color_scheme => $value ) {
@@ -195,9 +195,9 @@ function esolutions_get_color_scheme_choices() {
 
 	return $color_scheme_control_options;
 }
-endif; // esolutions_get_color_scheme_choices
+endif; // _esc_get_color_scheme_choices
 
-if ( ! function_exists( 'esolutions_sanitize_color_scheme' ) ) :
+if ( ! function_exists( '_esc_sanitize_color_scheme' ) ) :
 /**
  * Sanitization callback for color schemes.
  *
@@ -206,8 +206,8 @@ if ( ! function_exists( 'esolutions_sanitize_color_scheme' ) ) :
  * @param string $value Color scheme name value.
  * @return string Color scheme name.
  */
-function esolutions_sanitize_color_scheme( $value ) {
-	$color_schemes = esolutions_get_color_scheme_choices();
+function _esc_sanitize_color_scheme( $value ) {
+	$color_schemes = _esc_get_color_scheme_choices();
 
 	if ( ! array_key_exists( $value, $color_schemes ) ) {
 		$value = 'default';
@@ -215,7 +215,7 @@ function esolutions_sanitize_color_scheme( $value ) {
 
 	return $value;
 }
-endif; // esolutions_sanitize_color_scheme
+endif; // _esc_sanitize_color_scheme
 
 /**
  * Enqueues front-end CSS for color scheme.
@@ -224,7 +224,7 @@ endif; // esolutions_sanitize_color_scheme
  *
  * @see wp_add_inline_style()
  */
-function esolutions_color_scheme_css() {
+function _esc_color_scheme_css() {
 	$color_scheme_option = get_theme_mod( 'color_scheme', 'default' );
 
 	// Don't do anything if the default color scheme is selected.
@@ -232,11 +232,11 @@ function esolutions_color_scheme_css() {
 		return;
 	}
 
-	$color_scheme = esolutions_get_color_scheme();
+	$color_scheme = _esc_get_color_scheme();
 
 	// Convert main and sidebar text hex color to rgba.
-	$color_textcolor_rgb         = esolutions_hex2rgb( $color_scheme[3] );
-	$color_sidebar_textcolor_rgb = esolutions_hex2rgb( $color_scheme[4] );
+	$color_textcolor_rgb         = _esc_hex2rgb( $color_scheme[3] );
+	$color_sidebar_textcolor_rgb = _esc_hex2rgb( $color_scheme[4] );
 	$colors = array(
 		'background_color'            => $color_scheme[0],
 		'header_background_color'     => $color_scheme[1],
@@ -252,11 +252,11 @@ function esolutions_color_scheme_css() {
 		'meta_box_background_color'   => $color_scheme[5],
 	);
 
-	$color_scheme_css = esolutions_get_color_scheme_css( $colors );
+	$color_scheme_css = _esc_get_color_scheme_css( $colors );
 
 	wp_add_inline_style( 'esolutions-style', $color_scheme_css );
 }
-add_action( 'wp_enqueue_scripts', 'esolutions_color_scheme_css' );
+add_action( 'wp_enqueue_scripts', '_esc_color_scheme_css' );
 
 /**
  * Binds JS listener to make Customizer color_scheme control.
@@ -265,21 +265,21 @@ add_action( 'wp_enqueue_scripts', 'esolutions_color_scheme_css' );
  *
  * @since Twenty Fifteen 1.0
  */
-function esolutions_customize_control_js() {
+function _esc_customize_control_js() {
 	wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-scheme-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '20141216', true );
-	wp_localize_script( 'color-scheme-control', 'colorScheme', esolutions_get_color_schemes() );
+	wp_localize_script( 'color-scheme-control', 'colorScheme', _esc_get_color_schemes() );
 }
-add_action( 'customize_controls_enqueue_scripts', 'esolutions_customize_control_js' );
+add_action( 'customize_controls_enqueue_scripts', '_esc_customize_control_js' );
 
 /**
  * Binds JS handlers to make the Customizer preview reload changes asynchronously.
  *
  * @since Twenty Fifteen 1.0
  */
-function esolutions_customize_preview_js() {
+function _esc_customize_preview_js() {
 	wp_enqueue_script( 'esolutions-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20141216', true );
 }
-add_action( 'customize_preview_init', 'esolutions_customize_preview_js' );
+add_action( 'customize_preview_init', '_esc_customize_preview_js' );
 
 /**
  * Returns CSS for the color schemes.
@@ -289,7 +289,7 @@ add_action( 'customize_preview_init', 'esolutions_customize_preview_js' );
  * @param array $colors Color scheme colors.
  * @return string Color scheme CSS.
  */
-function esolutions_get_color_scheme_css( $colors ) {
+function _esc_get_color_scheme_css( $colors ) {
 	$colors = wp_parse_args( $colors, array(
 		'background_color'            => '',
 		'header_background_color'     => '',
@@ -688,7 +688,7 @@ CSS;
  *
  * @since Twenty Fifteen 1.0
  */
-function esolutions_color_scheme_css_template() {
+function _esc_color_scheme_css_template() {
 	$colors = array(
 		'background_color'            => '{{ data.background_color }}',
 		'header_background_color'     => '{{ data.header_background_color }}',
@@ -705,8 +705,8 @@ function esolutions_color_scheme_css_template() {
 	);
 	?>
 	<script type="text/html" id="tmpl-esolutions-color-scheme">
-		<?php echo esolutions_get_color_scheme_css( $colors ); ?>
+		<?php echo _esc_get_color_scheme_css( $colors ); ?>
 	</script>
 	<?php
 }
-add_action( 'customize_controls_print_footer_scripts', 'esolutions_color_scheme_css_template' );
+add_action( 'customize_controls_print_footer_scripts', '_esc_color_scheme_css_template' );

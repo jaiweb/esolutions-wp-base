@@ -25,7 +25,7 @@
 				 *
 				 * @since Twenty Fifteen 1.0
 				 */
-				do_action( 'esolutions_credits' );
+				do_action( '_esc_credits' );
 			?>
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'esolutions' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'esolutions' ), 'WordPress' ); ?></a>
 		</div><!-- .site-info -->

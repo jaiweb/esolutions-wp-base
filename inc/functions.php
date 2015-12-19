@@ -10,7 +10,7 @@ if ( ! function_exists( '_print' ) ) :
         echo '<pre'.$class.'>' . print_r($data,true) . '</pre>';
     }
 endif;
-function esolutions_layout_class($layout, $sidebar='sidebar-right'){
+function _esc_layout_class($layout, $sidebar='sidebar-right'){
 	$class	=	'';
 	switch($layout){
 		case 'content-area':
@@ -27,7 +27,7 @@ function esolutions_layout_class($layout, $sidebar='sidebar-right'){
 		$class	=	' ' . $class;
 	echo $class;
 }
-function esolutions_table_class($html){
+function _esc_table_class($html){
 	//$id, $caption, $title, $align, $url, $size, $alt = '' ){  
 	$classes = 'table'; // separated by spaces, e.g. 'img image-link'  // check if there are already classes assigned to the anchor
 	if ( preg_match('/<table.*? class=".*?">/', $html) ) {
@@ -37,9 +37,9 @@ function esolutions_table_class($html){
 	}
 	return $html;
 }
-add_filter('the_content','esolutions_table_class');
-add_filter('body_class','esolutions_filter_body_class_browser_body_class');
-function esolutions_filter_body_class_browser_body_class($classes) {
+add_filter('the_content','_esc_table_class');
+add_filter('body_class','_esc_filter_body_class_browser_body_class');
+function _esc_filter_body_class_browser_body_class($classes) {
   global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
 
   if($is_lynx) $classes[] = 'lynx';
@@ -54,17 +54,17 @@ function esolutions_filter_body_class_browser_body_class($classes) {
   if($is_iphone) $classes[] = 'iphone';
   return $classes;
 }
-function esolutions_admin_enqueue_scripts() {
+function _esc_admin_enqueue_scripts() {
     wp_enqueue_style('esolutions-admin-css', get_template_directory_uri() . '/css/admin.css');
 }
-add_action('admin_enqueue_scripts', 'esolutions_admin_enqueue_scripts');
+add_action('admin_enqueue_scripts', '_esc_admin_enqueue_scripts');
 
-    add_filter('manage_posts_columns', 'esolutions_posts_columns_id', 5);
-    add_action('manage_posts_custom_column', 'esolutions_posts_custom_id_columns', 5, 2);
-    add_filter('manage_pages_columns', 'esolutions_posts_columns_id', 5);
-    add_action('manage_pages_custom_column', 'esolutions_posts_custom_id_columns', 5, 2);
+    add_filter('manage_posts_columns', '_esc_posts_columns_id', 5);
+    add_action('manage_posts_custom_column', '_esc_posts_custom_id_columns', 5, 2);
+    add_filter('manage_pages_columns', '_esc_posts_columns_id', 5);
+    add_action('manage_pages_custom_column', '_esc_posts_custom_id_columns', 5, 2);
 
-function esolutions_posts_columns_id($columns){
+function _esc_posts_columns_id($columns){
 	if ( !is_array( $columns ) )
 		$columns = array();
 	
@@ -77,11 +77,11 @@ function esolutions_posts_columns_id($columns){
 	}
 	return $new;
 }
-function esolutions_posts_custom_id_columns($column_name, $post_id){
+function _esc_posts_custom_id_columns($column_name, $post_id){
 	if ( 'featured-image' != $column_name )
 		return;			
 	
-	$image_src = esolutions_get_the_image( $post_id );
+	$image_src = _esc_get_the_image( $post_id );
 				
 	if ( empty( $image_src ) ) {
 		echo "&nbsp;"; // This helps prevent issues with empty cells
@@ -102,7 +102,7 @@ function esolutions_posts_custom_id_columns($column_name, $post_id){
  * @updated 	0.1.9 - fixed persistent cache per post_id
  * @ref			http://www.ethitter.com/slides/wcmia-caching-scaling-2012-02-18/#slide-11
  */
-function esolutions_get_the_image( $post_id = false ) {
+function _esc_get_the_image( $post_id = false ) {
 	
 	$post_id	= (int) $post_id;
 	$cache_key	= "featured_image_post_id-{$post_id}-_thumbnail";

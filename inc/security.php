@@ -2,19 +2,19 @@
 if ( !defined('ABSPATH') )
     die ( 'No direct script access allowed' );
 
-if ( ! function_exists( 'esolutions_remove_version' ) ) :
+if ( ! function_exists( '_esc_remove_version' ) ) :
     //Remove WordPress Version Number
-    add_filter('the_generator', 'esolutions_remove_version');
-    function esolutions_remove_version() {
+    add_filter('the_generator', '_esc_remove_version');
+    function _esc_remove_version() {
         return '';
     }    
 endif;
-if ( ! function_exists( 'esolutions_login_obscure' ) ) :
+if ( ! function_exists( '_esc_login_obscure' ) ) :
     // Obscure login screen error messages
-    function esolutions_login_obscure(){
+    function _esc_login_obscure(){
         return '<strong>Sorry</strong>: Think you have gone wrong somwhere!';
     }
-    add_filter( 'login_errors', 'esolutions_login_obscure' );
+    add_filter( 'login_errors', '_esc_login_obscure' );
 endif;
 
 //Kill the WordPress update nag

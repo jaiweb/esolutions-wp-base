@@ -5,83 +5,83 @@ if ( !defined('ABSPATH') )
 /*
 *    Grid Bootstrap
 */
-add_shortcode('_col_1', 'esolutions_shortcode_col_1');
-add_shortcode('_col_2', 'esolutions_shortcode_col_2');
-add_shortcode('_col_3', 'esolutions_shortcode_col_3');
-add_shortcode('_col_4', 'esolutions_shortcode_col_4');
-add_shortcode('_col_5', 'esolutions_shortcode_col_5');
-add_shortcode('_col_6', 'esolutions_shortcode_col_6');
-add_shortcode('_col_7', 'esolutions_shortcode_col_7');
-add_shortcode('_col_8', 'esolutions_shortcode_col_8');
-add_shortcode('_col_9', 'esolutions_shortcode_col_9');
-add_shortcode('_col_10','esolutions_shortcode_col_10');
-add_shortcode('_col_11','esolutions_shortcode_col_11');
-add_shortcode('_col_12','esolutions_shortcode_col_12');
-add_shortcode('_row',	'esolutions_shortcode_row');
-add_shortcode('_block', 'esolutions_shortcode_block');
-function esolutions_shortcode_col($atts, $content=null){
-	$a	=	esolutions_shortcode_atts($atts);
+add_shortcode('_col_1', '_esc_shortcode_col_1');
+add_shortcode('_col_2', '_esc_shortcode_col_2');
+add_shortcode('_col_3', '_esc_shortcode_col_3');
+add_shortcode('_col_4', '_esc_shortcode_col_4');
+add_shortcode('_col_5', '_esc_shortcode_col_5');
+add_shortcode('_col_6', '_esc_shortcode_col_6');
+add_shortcode('_col_7', '_esc_shortcode_col_7');
+add_shortcode('_col_8', '_esc_shortcode_col_8');
+add_shortcode('_col_9', '_esc_shortcode_col_9');
+add_shortcode('_col_10','_esc_shortcode_col_10');
+add_shortcode('_col_11','_esc_shortcode_col_11');
+add_shortcode('_col_12','_esc_shortcode_col_12');
+add_shortcode('_row',	'_esc_shortcode_row');
+add_shortcode('_block', '_esc_shortcode_block');
+function _esc_shortcode_col($atts, $content=null){
+	$a	=	_esc_shortcode_atts($atts);
     return '<div' . $a['atts'] . '>' . do_shortcode($content) . '</div>';
 }
-function esolutions_shortcode_col_1($atts, $content=null){    
+function _esc_shortcode_col_1($atts, $content=null){    
     $atts['class']    .=    ' col-sm-1';
-    return do_shortcode(esolutions_shortcode_col($atts, $content));
+    return do_shortcode(_esc_shortcode_col($atts, $content));
 }
-function esolutions_shortcode_col_2($atts, $content=null){    
+function _esc_shortcode_col_2($atts, $content=null){    
     $atts['class']    .=    ' col-sm-2';
-    return do_shortcode(esolutions_shortcode_col($atts, $content));
+    return do_shortcode(_esc_shortcode_col($atts, $content));
 }
-function esolutions_shortcode_col_3($atts, $content=null){    
+function _esc_shortcode_col_3($atts, $content=null){    
     $atts['class']    .=    ' col-sm-3';
-    return do_shortcode(esolutions_shortcode_col($atts, $content));
+    return do_shortcode(_esc_shortcode_col($atts, $content));
 }
-function esolutions_shortcode_col_4($atts, $content=null){    
+function _esc_shortcode_col_4($atts, $content=null){    
     $atts['class']    .=    ' col-sm-4';
-    return do_shortcode(esolutions_shortcode_col($atts, $content));
+    return do_shortcode(_esc_shortcode_col($atts, $content));
 }
-function esolutions_shortcode_col_5($atts, $content=null){    
+function _esc_shortcode_col_5($atts, $content=null){    
     $atts['class']    .=    ' col-sm-5';
-    return do_shortcode(esolutions_shortcode_col($atts, $content));
+    return do_shortcode(_esc_shortcode_col($atts, $content));
 }
-function esolutions_shortcode_col_6($atts, $content=null){    
+function _esc_shortcode_col_6($atts, $content=null){    
     $atts['class']    .=    ' col-sm-6';
-    return do_shortcode(esolutions_shortcode_col($atts, $content));
+    return do_shortcode(_esc_shortcode_col($atts, $content));
 }
-function esolutions_shortcode_col_7($atts, $content=null){    
+function _esc_shortcode_col_7($atts, $content=null){    
     $atts['class']    .=    ' col-sm-7';
-    return do_shortcode(esolutions_shortcode_col($atts, $content));
+    return do_shortcode(_esc_shortcode_col($atts, $content));
 }
-function esolutions_shortcode_col_8($atts, $content=null){    
+function _esc_shortcode_col_8($atts, $content=null){    
     $atts['class']    .=    ' col-sm-8';
-    return do_shortcode(esolutions_shortcode_col($atts, $content));
+    return do_shortcode(_esc_shortcode_col($atts, $content));
 }
-function esolutions_shortcode_col_9($atts, $content=null){    
+function _esc_shortcode_col_9($atts, $content=null){    
     $atts['class']    .=    ' col-sm-9';
-    return do_shortcode(esolutions_shortcode_col($atts, $content));
+    return do_shortcode(_esc_shortcode_col($atts, $content));
 }
-function esolutions_shortcode_col_10($atts, $content=null){    
+function _esc_shortcode_col_10($atts, $content=null){    
     $atts['class']    .=    ' col-sm-10';
-    return do_shortcode(esolutions_shortcode_col($atts, $content));
+    return do_shortcode(_esc_shortcode_col($atts, $content));
 }
-function esolutions_shortcode_col_11($atts, $content=null){    
+function _esc_shortcode_col_11($atts, $content=null){    
     $atts['class']    .=    ' col-sm-11';
-    return do_shortcode(esolutions_shortcode_col($atts, $content));
+    return do_shortcode(_esc_shortcode_col($atts, $content));
 }
-function esolutions_shortcode_col_12($atts, $content=null){    
+function _esc_shortcode_col_12($atts, $content=null){    
     $atts['class']    .=    ' col-sm-12';
-    return do_shortcode(esolutions_shortcode_col($atts, $content));
+    return do_shortcode(_esc_shortcode_col($atts, $content));
 }
-function esolutions_shortcode_row($atts, $content){
-	$a	=	esolutions_shortcode_atts($atts);
+function _esc_shortcode_row($atts, $content){
+	$a	=	_esc_shortcode_atts($atts);
     $content    =    esc_remove_br_p($content);
     return '<div class="row' . $a['class'] . '">' . do_shortcode($content) . '</div>';
 }
-function esolutions_shortcode_block($atts, $content){
-	$a	=	esolutions_shortcode_atts($atts);
+function _esc_shortcode_block($atts, $content){
+	$a	=	_esc_shortcode_atts($atts);
     $content    =    esc_remove_br_p($content);
     return '<div' . $a['atts'] . '>' . do_shortcode($content) . '</div>';
 }
-function esolutions_shortcode_atts_defaults(){
+function _esc_shortcode_atts_defaults(){
 	$_defaults	=	array(					
 					'id'		=>	'',
 					'class'		=>	'',
@@ -97,8 +97,8 @@ function esolutions_shortcode_atts_defaults(){
 				);
 	return $_defaults;
 }
-function esolutions_shortcode_atts($atts, $additionals=array()){
-	$_defaults	=	esolutions_shortcode_atts_defaults();
+function _esc_shortcode_atts($atts, $additionals=array()){
+	$_defaults	=	_esc_shortcode_atts_defaults();
 	$_defaults	=	array_merge($_defaults, $additionals);
 	$a			=	shortcode_atts( $_defaults, $atts );
 	$a	=	array_map('trim',$a);
@@ -170,7 +170,7 @@ function esolutions_shortcode_atts($atts, $additionals=array()){
 	$a['atts']	=	$a['_class'] . $a['delay'];
 	return $a;
 }
-function esolutions_shortcode_wp_footer(){
+function _esc_shortcode_wp_footer(){
 	global $_shortcode_styles;//_print($_shortcode_styles);
 ?>
 <style type="text/css">
@@ -185,18 +185,18 @@ function esolutions_shortcode_wp_footer(){
 </style>
 <?php	
 }
-add_action('wp_footer', 'esolutions_shortcode_wp_footer',100);
-//add_action('wp_head', 'esolutions_shortcode_wp_footer',100);
-add_action('pre_get_posts','esolutions_shortcode_pre_get_posts');
-function esolutions_shortcode_pre_get_posts(){
+add_action('wp_footer', '_esc_shortcode_wp_footer',100);
+//add_action('wp_head', '_esc_shortcode_wp_footer',100);
+add_action('pre_get_posts','_esc_shortcode_pre_get_posts');
+function _esc_shortcode_pre_get_posts(){
 	global $_shortcode_styles, $_shortcode_styles_index;
 	$_shortcode_styles_index	=	1;
 }
 /*
 *    Custom shortcodes
 */
-add_shortcode('_entry_title','esolutions_shortcode_title');
-function esolutions_shortcode_title($atts, $content=null){
+add_shortcode('_entry_title','_esc_shortcode_title');
+function _esc_shortcode_title($atts, $content=null){
     extract( shortcode_atts( array(
             'class'    =>    ''
         ), $atts ) );    

@@ -11,7 +11,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php
 		// Post thumbnail.
-		esolutions_post_thumbnail();
+		_esc_post_thumbnail();
 	?>
 
 	<header class="entry-header">

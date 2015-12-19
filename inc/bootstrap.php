@@ -2,15 +2,15 @@
 if ( !defined('ABSPATH') )
     die ( 'No direct script access allowed' );
 
-add_filter( 'get_search_form', 'esolutions_get_search_form' );
-function esolutions_get_search_form( $form ) {
+add_filter( 'get_search_form', '_esc_get_search_form' );
+function _esc_get_search_form( $form ) {
 	$search = 'input type="submit"';
 	$form  = str_replace($search,$search . ' class="btn btn-primary"',$form);
 
     return $form;
 }
-add_filter( 'comment_form_default_fields', 'esolutions_comment_form_fields' );
-function esolutions_comment_form_fields( $fields ) {
+add_filter( 'comment_form_default_fields', '_esc_comment_form_fields' );
+function _esc_comment_form_fields( $fields ) {
     $commenter = wp_get_current_commenter();
     $req = get_option( 'require_name_email' );
     $aria_req = ( $req ? " aria-required='true'" : '' );
@@ -25,20 +25,20 @@ function esolutions_comment_form_fields( $fields ) {
     );
     return $fields;
 }
-add_filter( 'comment_form_defaults', 'esolutions_comment_form' );
-function esolutions_comment_form( $args ) {
+add_filter( 'comment_form_defaults', '_esc_comment_form' );
+function _esc_comment_form( $args ) {
     $args['comment_field'] = '<div class="form-group comment-form-comment">
     <label for="comment">' . _x( 'Comment', 'noun' ) . '</label>
     <textarea class="form-control" id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea>
     </div>';
     return $args;
 }
-add_action('comment_form', 'esolutions_comment_button' );
-function esolutions_comment_button() {
+add_action('comment_form', '_esc_comment_button' );
+function _esc_comment_button() {
 	echo '<button class="btn btn-primary" type="submit">' . __( 'Submit' ) . '</button>';
 }
-add_filter( 'the_password_form', 'esolutions_the_password_form' );
-function esolutions_the_password_form() {
+add_filter( 'the_password_form', '_esc_the_password_form' );
+function _esc_the_password_form() {
     global $post;
     $label = 'pwbox-'.( empty( $post->ID ) ? rand() : $post->ID );
     $o = '<form role="form" class="form-inline protected-post-form" action="' . get_option('siteurl') . '/wp-pass.php" method="post">
@@ -48,7 +48,7 @@ function esolutions_the_password_form() {
 
     return $o;
 }
-function esolutions_search_widget( $html ) {
+function _esc_search_widget( $html ) {
     ob_start(); ?>
     <form role="search" method="get" action="<?php echo esc_url( home_url() ); ?>" class="search-form form-inline">
 		<div class="input-group">
@@ -62,5 +62,5 @@ function esolutions_search_widget( $html ) {
     </form>
     <?php return ob_get_clean();
 }
-add_filter( 'get_search_form', 'esolutions_search_widget' );
+add_filter( 'get_search_form', '_esc_search_widget' );
 ?>

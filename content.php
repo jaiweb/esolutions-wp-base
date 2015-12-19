@@ -13,7 +13,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php
 		// Post thumbnail.
-		esolutions_post_thumbnail();
+		_esc_post_thumbnail();
 	?>
 
 	<header class="entry-header">
@@ -27,7 +27,7 @@
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
-		<?php esolutions_entry_meta('header'); ?>
+		<?php _esc_entry_meta('header'); ?>
 		<?php edit_post_link( __( 'Edit', 'esolutions' ), ' <i class="fa fa-edit"></i> <span class="edit-link">', '</span>' ); ?>
 		<?php
 			/* translators: %s: Name of current post */
@@ -55,7 +55,7 @@
 	?>
 
 	<footer class="entry-footer">
-		<?php esolutions_entry_meta(); ?>
+		<?php _esc_entry_meta(); ?>
 		
 	</footer><!-- .entry-footer -->
 

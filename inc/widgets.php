@@ -89,8 +89,8 @@ if($the_query->have_posts() ) : while ( $the_query->have_posts() ) : $the_query-
         <?php
 	}
 }
-function esolutions_load_widgets(){
+function _esc_load_widgets(){
 	register_widget('Tabs_Widget');
 }
-add_action('widgets_init', 'esolutions_load_widgets');
+add_action('widgets_init', '_esc_load_widgets');
 ?>

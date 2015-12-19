@@ -11,14 +11,14 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php esolutions_post_thumbnail(); ?>
+	<?php _esc_post_thumbnail(); ?>
 
 	<header class="entry-header">
 		<?php
 			if ( is_single() ) :
-				the_title( sprintf( '<h1 class="entry-title"><a href="%s">', esc_url( esolutions_get_link_url() ) ), '</a></h1>' );
+				the_title( sprintf( '<h1 class="entry-title"><a href="%s">', esc_url( _esc_get_link_url() ) ), '</a></h1>' );
 			else :
-				the_title( sprintf( '<h2 class="entry-title"><a href="%s">', esc_url( esolutions_get_link_url() ) ), '</a></h2>' );
+				the_title( sprintf( '<h2 class="entry-title"><a href="%s">', esc_url( _esc_get_link_url() ) ), '</a></h2>' );
 			endif;
 		?>
 	</header>
@@ -52,7 +52,7 @@
 	?>
 
 	<footer class="entry-footer">
-		<?php esolutions_entry_meta(); ?>
+		<?php _esc_entry_meta(); ?>
 		<?php edit_post_link( __( 'Edit', 'esolutions' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer>
 	<!-- .entry-footer -->
