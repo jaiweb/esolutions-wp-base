@@ -21,7 +21,7 @@ get_header(); ?>
 
 					<nav id="image-navigation" class="navigation image-navigation">
 						<div class="nav-links">
-							<div class="nav-previous"><?php previous_image_link( false, __( 'Previous Image', 'esolutions' ) ); ?></div><div class="nav-next"><?php next_image_link( false, __( 'Next Image', 'esolutions' ) ); ?></div>
+							<div class="nav-previous"><?php previous_image_link( false, __( 'Previous Image', 'esc' ) ); ?></div><div class="nav-next"><?php next_image_link( false, __( 'Next Image', 'esc' ) ); ?></div>
 						</div><!-- .nav-links -->
 					</nav><!-- .image-navigation -->
 
@@ -56,11 +56,11 @@ get_header(); ?>
 						<?php
 							the_content();
 							wp_link_pages( array(
-								'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'esolutions' ) . '</span>',
+								'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'esc' ) . '</span>',
 								'after'       => '</div>',
 								'link_before' => '<span>',
 								'link_after'  => '</span>',
-								'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'esolutions' ) . ' </span>%',
+								'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'esc' ) . ' </span>%',
 								'separator'   => '<span class="screen-reader-text">, </span>',
 							) );
 						?>
@@ -68,7 +68,7 @@ get_header(); ?>
 
 					<footer class="entry-footer">
 						<?php _esc_entry_meta(); ?>
-						<?php edit_post_link( __( 'Edit', 'esolutions' ), '<span class="edit-link">', '</span>' ); ?>
+						<?php edit_post_link( __( 'Edit', 'esc' ), '<span class="edit-link">', '</span>' ); ?>
 					</footer><!-- .entry-footer -->
 
 				</article><!-- #post-## -->
@@ -81,7 +81,7 @@ get_header(); ?>
 
 					// Previous/next post navigation.
 					the_post_navigation( array(
-						'prev_text' => _x( '<span class="meta-nav">Published in</span><span class="post-title">%title</span>', 'Parent post link', 'esolutions' ),
+						'prev_text' => _x( '<span class="meta-nav">Published in</span><span class="post-title">%title</span>', 'Parent post link', 'esc' ),
 					) );
 
 				// End the loop.

@@ -2,9 +2,9 @@
 class Tabs_Widget extends WP_Widget{
 	
 	function Tabs_Widget(){
-		$_widget_id	=	'esolutions-tabs';
+		$_widget_id	=	'esc-tabs';
 		// Widget settings
-		$widget_ops = array('classname' => $_widget_id, 'description' => __('Display Tabs.', 'esolutions'));
+		$widget_ops = array('classname' => $_widget_id, 'description' => __('Display Tabs.', 'esc'));
 		// Widget control settings
 		$control_ops = array('id_base' => $_widget_id);
 		// Create the widget
@@ -65,16 +65,16 @@ class Tabs_Widget extends WP_Widget{
 		$instance = wp_parse_args( (array) $instance, $defaults );
 		?>
         <p>
-        	<label for="<?php echo $this->get_field_id('custom_contact_form_title'); ?>"><?php _e('Title:', 'esolutions'); ?></label>
+        	<label for="<?php echo $this->get_field_id('custom_contact_form_title'); ?>"><?php _e('Title:', 'esc'); ?></label>
 			<input id="<?php echo $this->get_field_id('custom_contact_form_title'); ?>" type="text" name="<?php echo $this->get_field_name('custom_contact_form_title'); ?>" value="<?php echo $instance['custom_contact_form_title']; ?>" class="widefat" />
         </p>
        <!-- <p>
-        	<label for="<?php echo $this->get_field_id('custom_contact_form_shortcode'); ?>"><?php _e('shortcode:', 'esolutions'); ?></label>
+        	<label for="<?php echo $this->get_field_id('custom_contact_form_shortcode'); ?>"><?php _e('shortcode:', 'esc'); ?></label>
 			<textarea id="<?php echo $this->get_field_id('custom_contact_form_shortcode'); ?>" type="text" name="<?php echo $this->get_field_name('custom_contact_form_shortcode'); ?>" rows="5" class="widefat"><?php echo $instance['custom_contact_form_shortcode']; ?></textarea>
         </p> -->
 		
         <p>
-        	<label for="<?php echo $this->get_field_id('custom_contact_form_id'); ?>"><?php _e('Select a Contact Forms:', 'esolutions'); ?></label>
+        	<label for="<?php echo $this->get_field_id('custom_contact_form_id'); ?>"><?php _e('Select a Contact Forms:', 'esc'); ?></label>
 			<select id="<?php echo $this->get_field_id('custom_contact_form_id'); ?>" name="<?php echo $this->get_field_name('custom_contact_form_id'); ?>">
 <?php
 $args = array('post_type'=> 'wpcf7_contact_form');

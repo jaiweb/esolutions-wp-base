@@ -28,7 +28,7 @@ function _esc_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'color_scheme', array(
-		'label'    => __( 'Base Color Scheme', 'esolutions' ),
+		'label'    => __( 'Base Color Scheme', 'esc' ),
 		'section'  => 'colors',
 		'type'     => 'select',
 		'choices'  => _esc_get_color_scheme_choices(),
@@ -43,8 +43,8 @@ function _esc_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'sidebar_textcolor', array(
-		'label'       => __( 'Header and Sidebar Text Color', 'esolutions' ),
-		'description' => __( 'Applied to the header on small screens and the sidebar on wide screens.', 'esolutions' ),
+		'label'       => __( 'Header and Sidebar Text Color', 'esc' ),
+		'description' => __( 'Applied to the header on small screens and the sidebar on wide screens.', 'esc' ),
 		'section'     => 'colors',
 	) ) );
 
@@ -59,13 +59,13 @@ function _esc_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
-		'label'       => __( 'Header and Sidebar Background Color', 'esolutions' ),
-		'description' => __( 'Applied to the header on small screens and the sidebar on wide screens.', 'esolutions' ),
+		'label'       => __( 'Header and Sidebar Background Color', 'esc' ),
+		'description' => __( 'Applied to the header on small screens and the sidebar on wide screens.', 'esc' ),
 		'section'     => 'colors',
 	) ) );
 
 	// Add an additional description to the header image section.
-	$wp_customize->get_section( 'header_image' )->description = __( 'Applied to the header on small screens and the sidebar on wide screens.', 'esolutions' );
+	$wp_customize->get_section( 'header_image' )->description = __( 'Applied to the header on small screens and the sidebar on wide screens.', 'esc' );
 }
 add_action( 'customize_register', '_esc_customize_register', 11 );
 
@@ -89,7 +89,7 @@ add_action( 'customize_register', '_esc_customize_register', 11 );
 function _esc_get_color_schemes() {
 	return apply_filters( '_esc_color_schemes', array(
 		'default' => array(
-			'label'  => __( 'Default', 'esolutions' ),
+			'label'  => __( 'Default', 'esc' ),
 			'colors' => array(
 				'#f1f1f1',
 				'#ffffff',
@@ -100,7 +100,7 @@ function _esc_get_color_schemes() {
 			),
 		),
 		'dark'    => array(
-			'label'  => __( 'Dark', 'esolutions' ),
+			'label'  => __( 'Dark', 'esc' ),
 			'colors' => array(
 				'#111111',
 				'#202020',
@@ -111,7 +111,7 @@ function _esc_get_color_schemes() {
 			),
 		),
 		'yellow'  => array(
-			'label'  => __( 'Yellow', 'esolutions' ),
+			'label'  => __( 'Yellow', 'esc' ),
 			'colors' => array(
 				'#f4ca16',
 				'#ffdf00',
@@ -122,7 +122,7 @@ function _esc_get_color_schemes() {
 			),
 		),
 		'pink'    => array(
-			'label'  => __( 'Pink', 'esolutions' ),
+			'label'  => __( 'Pink', 'esc' ),
 			'colors' => array(
 				'#ffe5d1',
 				'#e53b51',
@@ -133,7 +133,7 @@ function _esc_get_color_schemes() {
 			),
 		),
 		'purple'  => array(
-			'label'  => __( 'Purple', 'esolutions' ),
+			'label'  => __( 'Purple', 'esc' ),
 			'colors' => array(
 				'#674970',
 				'#2e2256',
@@ -144,7 +144,7 @@ function _esc_get_color_schemes() {
 			),
 		),
 		'blue'   => array(
-			'label'  => __( 'Blue', 'esolutions' ),
+			'label'  => __( 'Blue', 'esc' ),
 			'colors' => array(
 				'#e9f2f9',
 				'#55c3dc',
@@ -254,7 +254,7 @@ function _esc_color_scheme_css() {
 
 	$color_scheme_css = _esc_get_color_scheme_css( $colors );
 
-	wp_add_inline_style( 'esolutions-style', $color_scheme_css );
+	wp_add_inline_style( 'esc-style', $color_scheme_css );
 }
 add_action( 'wp_enqueue_scripts', '_esc_color_scheme_css' );
 
@@ -277,7 +277,7 @@ add_action( 'customize_controls_enqueue_scripts', '_esc_customize_control_js' );
  * @since Twenty Fifteen 1.0
  */
 function _esc_customize_preview_js() {
-	wp_enqueue_script( 'esolutions-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20141216', true );
+	wp_enqueue_script( 'esc-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20141216', true );
 }
 add_action( 'customize_preview_init', '_esc_customize_preview_js' );
 
@@ -704,7 +704,7 @@ function _esc_color_scheme_css_template() {
 		'meta_box_background_color'   => '{{ data.meta_box_background_color }}',
 	);
 	?>
-	<script type="text/html" id="tmpl-esolutions-color-scheme">
+	<script type="text/html" id="tmpl-esc-color-scheme">
 		<?php echo _esc_get_color_scheme_css( $colors ); ?>
 	</script>
 	<?php

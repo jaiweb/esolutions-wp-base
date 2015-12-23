@@ -55,7 +55,7 @@ function _esc_filter_body_class_browser_body_class($classes) {
   return $classes;
 }
 function _esc_admin_enqueue_scripts() {
-    wp_enqueue_style('esolutions-admin-css', get_template_directory_uri() . '/css/admin.css');
+    wp_enqueue_style('esc-admin-css', get_template_directory_uri() . '/css/admin.css');
 }
 add_action('admin_enqueue_scripts', '_esc_admin_enqueue_scripts');
 
@@ -342,5 +342,30 @@ function wp_custom_archive($args = '') {
     else
         return $output;
 }
+/*
+ * Disqus outputting JS on parts of your wordpress website you don’t want? 
+ * will only output JS on is_singular posts or pages where comments are available.
+*/
+add_action( 'wp_head', '_esc_action_disqus_comments' );
+function _esc_action_disqus_comments() {
+        if ( is_singular( array( 'post', 'page' ) ) && comments_open() )
+                return;
+        remove_action( 'loop_end', 'dsq_loop_end' );
+        remove_action( 'wp_footer', 'dsq_output_footer_comment_js' );
+}
+/*
+will remove the HTML p tag from around images in the_content.
+function filter_ptags_on_images($content){
+    return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
+}
+add_filter('the_content', 'filter_ptags_on_images');
 
+will prevent direct file access to the functions.php 
+file via the URL “http://wpsnipp.com/wp-content/themes/themename/functions.php”
+
+if (!empty($_SERVER['SCRIPT_FILENAME']) && 'functions.php' == basename($_SERVER['SCRIPT_FILENAME']))
+{
+die ('No access!');
+}
+*/
 ?>

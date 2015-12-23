@@ -43,7 +43,7 @@
 					</div>
 					<?php
 						wp_nav_menu( array(
-							'theme_location'	=>	'primary',
+							'theme_location'	=>	'main',
 							'container_id'		=>	'navbar',
 							'container_class' 	=>	'navbar-collapse collapse',
 							'menu_class'      	=>	'nav navbar-nav',
@@ -53,7 +53,7 @@
 					?>
 				</div>
 			</nav>
-			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'esolutions' ); ?></a>
+			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'esc' ); ?></a>
 		</div><!-- .site-branding -->
 	</header><!-- .site-header -->
 	<div id="content" class="site-content row">

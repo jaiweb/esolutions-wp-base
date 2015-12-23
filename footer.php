@@ -20,18 +20,19 @@
 				<a href="#"><i class="fa fa-youtube-square"></i></a>
 			</div>
 			<?php
-				/**
-				 * Fires before the Twenty Fifteen footer text for footer customization.
-				 *
-				 * @since Twenty Fifteen 1.0
-				 */
-				do_action( '_esc_credits' );
-			?>
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'esolutions' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'esolutions' ), 'WordPress' ); ?></a>
+						wp_nav_menu( array(
+							'theme_location'	=>	'footer',
+							'container_id'		=>	'navbar',
+							'menu_class'      	=>	'nav navbar-nav',
+							'depth'				=>	1,
+							'fallback_cb'       =>	'wp_bootstrap_navwalker::fallback',
+							'walker'			=>	new wp_bootstrap_navwalker()
+						) );
+					?>
+			<a href="<?php echo esc_url( __( 'https://solutionswebonline.com/toolpress/themes/#base', 'esc' ) ); ?>"><?php printf( __( 'By %s', 'esc' ), 'E-Solutions Consulting Bolivia' ); ?></a>
 		</div><!-- .site-info -->
 	</footer><!-- .site-footer -->
 </div><!-- .site -->
-<a href="#0" class="gotop btn"><span class="glyphicon glyphicon-chevron-up"></span></a>
 <div class="scroll-to-top"><i class="fa fa-angle-up"></i></div>
 <?php wp_footer(); ?>
 </body>

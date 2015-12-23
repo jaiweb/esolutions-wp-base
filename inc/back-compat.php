@@ -34,7 +34,7 @@ add_action( 'after_switch_theme', '_esc_switch_theme' );
  * @since Twenty Fifteen 1.0
  */
 function _esc_upgrade_notice() {
-	$message = sprintf( __( 'Twenty Fifteen requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again.', 'esolutions' ), $GLOBALS['wp_version'] );
+	$message = sprintf( __( 'Twenty Fifteen requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again.', 'esc' ), $GLOBALS['wp_version'] );
 	printf( '<div class="error"><p>%s</p></div>', $message );
 }
 
@@ -44,7 +44,7 @@ function _esc_upgrade_notice() {
  * @since Twenty Fifteen 1.0
  */
 function _esc_customize() {
-	wp_die( sprintf( __( 'Twenty Fifteen requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again.', 'esolutions' ), $GLOBALS['wp_version'] ), '', array(
+	wp_die( sprintf( __( 'Twenty Fifteen requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again.', 'esc' ), $GLOBALS['wp_version'] ), '', array(
 		'back_link' => true,
 	) );
 }
@@ -57,7 +57,7 @@ add_action( 'load-customize.php', '_esc_customize' );
  */
 function _esc_preview() {
 	if ( isset( $_GET['preview'] ) ) {
-		wp_die( sprintf( __( 'Twenty Fifteen requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again.', 'esolutions' ), $GLOBALS['wp_version'] ) );
+		wp_die( sprintf( __( 'Twenty Fifteen requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again.', 'esc' ), $GLOBALS['wp_version'] ) );
 	}
 }
 add_action( 'template_redirect', '_esc_preview' );

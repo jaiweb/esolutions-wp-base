@@ -50,13 +50,13 @@ function wp_hide_update() {
 add_action('admin_menu','wp_hide_update');
 //Disable WordPress Automatic Updates
 define('WP_AUTO_UPDATE_CORE', false);
-
-
-
-//Enable shortcodes in widgets
-// shortcode in widgets
-if ( !is_admin() ){
-    add_filter('widget_text', 'do_shortcode', 11);
+/*
+ * will check the referrer when a user posts a comment to ensure they are not a BOT.
+*/
+function check_referrer() {
+   if (!isset($_SERVER['HTTP_REFERER']) || $_SERVER['HTTP_REFERER'] == “”) {
+       wp_die( __('Please enable referrers in your browser, or, if you\'re a spammer, bugger off!') );
+   }
 }
-
+add_action('check_comment_flood', 'check_referrer');
 ?>
