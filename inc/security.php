@@ -4,7 +4,7 @@ if ( !defined('ABSPATH') )
 
 if ( ! function_exists( '_esc_remove_version' ) ) :
     //Remove WordPress Version Number
-    add_filter('the_generator', '_esc_remove_version');
+    add_filter('the_generator', '_esc_remove_version', 100);
     function _esc_remove_version() {
         return '';
     }    

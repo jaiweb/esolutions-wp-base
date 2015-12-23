@@ -2,14 +2,7 @@
 if ( !defined('ABSPATH') )
     die ( 'No direct script access allowed' );
 
-if ( ! function_exists( '_print' ) ) :
-    function _print($data,$hide=false){
-        $class='';
-        if($hide)
-            $class=' class="esc-hide"';        
-        echo '<pre'.$class.'>' . print_r($data,true) . '</pre>';
-    }
-endif;
+
 function _esc_layout_class($layout, $sidebar='sidebar-right'){
 	$class	=	'';
 	switch($layout){
@@ -159,10 +152,6 @@ function page_custom_column_views( $column_name, $id )
        endforeach;
    }
 }
-remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-remove_action( 'admin_print_scripts', 'print_emoji_detection_script', 100 );
-remove_action( 'wp_print_styles', 'print_emoji_styles', 100 );
-remove_action( 'admin_print_styles', 'print_emoji_styles', 100 ); 
 /*
 enable Contact form 7 only on specified pages
 */
@@ -368,4 +357,15 @@ if (!empty($_SERVER['SCRIPT_FILENAME']) && 'functions.php' == basename($_SERVER[
 die ('No access!');
 }
 */
+// Remove WP Version From Styles	
+add_filter( 'style_loader_src', '_esc_remove_ver_css_js', 9999 );
+// Remove WP Version From Scripts
+add_filter( 'script_loader_src', '_esc_remove_ver_css_js', 9999 );
+
+// Function to remove version numbers
+function _esc_remove_ver_css_js( $src ) {
+	if ( strpos( $src, 'ver=' ) )
+		$src = remove_query_arg( 'ver', $src );
+	return $src;
+}
 ?>

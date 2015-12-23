@@ -10,6 +10,9 @@ remove_filter( 'the_content', 'wpautop' );
 add_filter( 'the_content', 'wpautop' , 99);
 add_filter( 'the_content', 'shortcode_unautop',100 );
 
+add_filter('the_content', '_esc_filter_fix_shortcodes');
+
+
 add_shortcode('_images', '_esc_shortcode__images');
 function _esc_shortcode__images() {
 	return get_template_directory_uri() . '/images';
@@ -25,5 +28,18 @@ function _esc_shortcode_section_title( $atts, $content = null ) {
 	return ob_get_clean();
 }
 add_shortcode('_section_title', '_esc_shortcode_section_title');
-
+/*
+ * remove extra P and BR tags around shortcodes 
+ * that WordPress likes to add
+*/
+function _esc_filter_fix_shortcodes($content){   
+    $array = array (
+        '<p>[' => '[', 
+        ']</p>' => ']', 
+        ']<br />' => ']',
+        ']<br>' => ']'
+    );
+    $content = strtr($content, $array);
+    return $content;
+}
 ?>

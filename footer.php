@@ -22,7 +22,7 @@
 			<?php
 						wp_nav_menu( array(
 							'theme_location'	=>	'footer',
-							'container_id'		=>	'navbar',
+							'container_id'		=>	'navbar-footer',
 							'menu_class'      	=>	'nav navbar-nav',
 							'depth'				=>	1,
 							'fallback_cb'       =>	'wp_bootstrap_navwalker::fallback',
