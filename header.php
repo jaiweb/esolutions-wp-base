@@ -26,10 +26,11 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<?php	do_action('_after_body');	?>
 <div id="page" class="hfeed site container">
 	<header id="masthead" class="site-header" role="banner">		
 		<div class="site-branding">
-			<a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" title="<?php echo get_bloginfo( 'description', 'display' ) ?>"><img src="http://placehold.it/400x100/000000/ffffff/?text=LOGO" alt="<?php bloginfo( 'name' ); ?>" /></a>
+			<?php	do_action('_before_navigation');	?>
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="container-fluid">
 					<div class="navbar-header">
@@ -54,6 +55,7 @@
 				</div>
 			</nav>
 			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'esc' ); ?></a>
+			<?php	do_action('_after_navigation');	?>
 		</div><!-- .site-branding -->
 	</header><!-- .site-header -->
 	<div id="content" class="site-content row">
