@@ -368,4 +368,57 @@ function _esc_remove_ver_css_js( $src ) {
 		$src = remove_query_arg( 'ver', $src );
 	return $src;
 }
+
+function _esc_get_carousel(){
+	$args	=	array(	'posts_per_page'   => 5,
+						'post_type'        => 'banners'
+					);
+	$banners	=	get_posts($args);
+	if(!$banners)
+		return ;
+	$indicators = '';
+	$items='';
+	$_indicators_first=true;
+	$_items_first=true;
+	global $post;
+	foreach ( $banners as $key=>$post ) : setup_postdata( $post );
+		$class_indicators='';
+		if($_indicators_first){
+			$_indicators_first=false;
+			$class_indicators = ' class="active"';
+		}
+		$indicators .= '<li data-target="#home-carousel" data-slide-to="' . $key . '"' . $class_indicators . '></li>';
+		$class_items='';
+		if($_items_first){
+			$_items_first=false;
+			$class_items = ' active';
+		}
+		$feat_image = get_the_post_thumbnail($post-> ID,'large');
+		$feat_image = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );		
+		$items .= '<div class="item' . $class_items . '" style="background-image:url(' . $feat_image . ');">
+	<div class="container">
+		<div class="carousel-caption">
+			<p>'. get_the_excerpt() .'</p>
+		</div>
+	</div>
+</div>';
+	endforeach; 
+	wp_reset_postdata();
+	$_esc_banner_slide = trim(get_option('_esc_banner_slide'));
+	if(!$_esc_banner_slide)
+		$_esc_banner_slide	=	5;
+	$_esc_banner_slide	=	$_esc_banner_slide * 1000;
+	
+	$_esc_banner_pause_in_hover = get_option('_esc_banner_pause_in_hover');
+	if(!$_esc_banner_pause_in_hover)
+		$_esc_banner_pause_in_hover	=	' data-pause="false"';
+?>
+	<div id="home-carousel" class="carousel slide carousel-fade" data-interval="<?php echo $_esc_banner_slide ?>" data-ride="carousel"<?php echo $_esc_banner_pause_in_hover ?>>
+		<ol class="carousel-indicators"><?php echo $indicators	?></ol>
+		<div class="carousel-inner"><?php	echo $items	?></div>
+		<a class="left carousel-control" href="#home-carousel" role="button" data-slide="prev"><span class="arrow-circle left"></span></a>
+		<a class="right carousel-control" href="#home-carousel" role="button" data-slide="next"><span class="arrow-circle right"></span></a>
+	</div><!-- /.carousel -->
+<?php
+}
 ?>
