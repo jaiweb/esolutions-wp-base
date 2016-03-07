@@ -248,3 +248,7 @@ add_action('_before_navigation', '_esc_before_navigation', 10);
 function _esc_before_navigation(){
 	echo '<a class="logo" href="' . esc_url( home_url( '/' ) ) . '" rel="home" title="' . get_bloginfo( 'description', 'display' ) . '"><img src="' . _ESC_IMAGES . 'logo.png" alt="' . get_bloginfo( 'name' ) . '" width="210" height="51" /></a>';
 }
+add_action('_after_header','_esc_after_header');
+function _esc_after_header(){
+	echo '';
+}

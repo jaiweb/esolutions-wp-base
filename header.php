@@ -58,4 +58,5 @@
 			<?php	do_action('_after_navigation');	?>
 		</div><!-- .site-branding -->
 	</header><!-- .site-header -->
+	<?php	do_action('_after_header');	?>
 	<div id="content" class="site-content row">

@@ -39,5 +39,6 @@ require_once('functions.php');
 require_once('shortcodes.php');
 require_once('nav-menu.php');
 require_once('sidebars.php');
+require_once('posttypes.php');
 
 ?>
