@@ -5,6 +5,7 @@ if ( !defined('ABSPATH') )
 define('_ESC_TEMPLATE_DIR', get_bloginfo('template_directory'));
 define('_ESC_IMAGES', _ESC_TEMPLATE_DIR . '/images/');
 define('_ESC_SIDEBAR_DEFAULT', 'sidebar-page');
+
 if ( ! function_exists( '_print' ) ) :
     function _print($data,$hide=false){
         $class='';
@@ -20,25 +21,18 @@ remove_action( 'admin_print_scripts', 'print_emoji_detection_script', 100 );
 remove_action( 'admin_print_styles', 'print_emoji_styles', 100 );*/
 remove_action( 'wp_print_styles', 'print_emoji_styles');
 remove_action( 'admin_print_styles', 'print_emoji_styles');
-/**
- * Custom template tags for this theme.
- *
- * @since Twenty Fifteen 1.0
- */
-require_once('template-tags.php');
-/**
- * Customizer additions.
- *
- * @since Twenty Fifteen 1.0
- */
-require_once( 'customizer.php');
-require_once( 'security.php');
 
+require_once('template-tags.php');
+require_once( 'customizer.php');
+
+require_once( 'security.php');
 require_once('bootstrap.php');
 require_once('functions.php');
 require_once('shortcodes.php');
 require_once('nav-menu.php');
 require_once('sidebars.php');
-require_once('posttypes.php');
+/*require_once('widgets.php');*/
+require get_template_directory() . '/inc/widgets.php';
+/*require_once('posttypes.php');*/
 
 ?>

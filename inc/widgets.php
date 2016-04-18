@@ -1,96 +1,86 @@
-<?php 
-class Tabs_Widget extends WP_Widget{
-	
-	function Tabs_Widget(){
-		$_widget_id	=	'esc-tabs';
-		// Widget settings
-		$widget_ops = array('classname' => $_widget_id, 'description' => __('Display Tabs.', 'esc'));
-		// Widget control settings
-		$control_ops = array('id_base' => $_widget_id);
-		// Create the widget
-		$this->WP_Widget($_widget_id, 'Display Tabs', $widget_ops, $control_ops);
-	}	
-	function widget($args, $instance){
-		extract($args);
-		// User selected settings
-		$custom_contact_form_title		=	$instance['custom_contact_form_title'];
-		//$custom_contact_form_shortcode	=	$instance['custom_contact_form_shortcode'];
-		$custom_contact_form_id			=	$instance['custom_contact_form_id'];
-		
-		echo $args['before_widget'];//.$args['before_title'].$custom_contact_form_title.$args['after_title'];
-		//echo '<h3 class="widget-title">'.$instance['custom_contact_form_title'].'</h3>';
-		?>  
-
-
-
-<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-	<li class="col-sm-4 col-sm-np text-center active"><a href="#red" data-toggle="tab">Subscribe</a></li>
-	<li class="col-sm-4 col-sm-np text-center"><a href="#orange" data-toggle="tab">Archive</a></li>
-	<li class="col-sm-4 col-sm-np text-center"><a href="#yellow" data-toggle="tab">Tag</a></li>
-</ul>
-        <div id="my-tab-content" class="tab-content">
-            <div class="tab-pane active" id="red">
-                <h3>Subscribe</h3>
-            </div>
-            <div class="tab-pane" id="orange">
-                <h3>Archive</h3>
-            </div>
-            <div class="tab-pane" id="yellow">
-                <h3>Tag</h3>
-            </div>
-        </div>
-
-
-
-		<?php echo apply_filters('the_content', $__shortcode); ?>
-        <?php echo $args['after_widget']; ?>        
-        <?php
-	}	
-	function update($new_instance, $old_instance){	// This function processes and updates the settings
-		$instance = $old_instance;
-		
-		// Strip tags (if needed) and update the widget settings
-		//$instance['custom_contact_form_shortcode']	=	strip_tags($new_instance['custom_contact_form_shortcode']);
-		$instance['custom_contact_form_title']		=	strip_tags($new_instance['custom_contact_form_title']);
-		$instance['custom_contact_form_id']			=	strip_tags($new_instance['custom_contact_form_id']);
-		
-		return $instance;
-	}	
-	function form($instance){
-		$defaults = array(
-						//'custom_contact_form_shortcode' => '',
-						'custom_contact_form_title' 	=>	'',
-						'custom_contact_form_id' 		=> '',
-						);
-		$instance = wp_parse_args( (array) $instance, $defaults );
-		?>
-        <p>
-        	<label for="<?php echo $this->get_field_id('custom_contact_form_title'); ?>"><?php _e('Title:', 'esc'); ?></label>
-			<input id="<?php echo $this->get_field_id('custom_contact_form_title'); ?>" type="text" name="<?php echo $this->get_field_name('custom_contact_form_title'); ?>" value="<?php echo $instance['custom_contact_form_title']; ?>" class="widefat" />
-        </p>
-       <!-- <p>
-        	<label for="<?php echo $this->get_field_id('custom_contact_form_shortcode'); ?>"><?php _e('shortcode:', 'esc'); ?></label>
-			<textarea id="<?php echo $this->get_field_id('custom_contact_form_shortcode'); ?>" type="text" name="<?php echo $this->get_field_name('custom_contact_form_shortcode'); ?>" rows="5" class="widefat"><?php echo $instance['custom_contact_form_shortcode']; ?></textarea>
-        </p> -->
-		
-        <p>
-        	<label for="<?php echo $this->get_field_id('custom_contact_form_id'); ?>"><?php _e('Select a Contact Forms:', 'esc'); ?></label>
-			<select id="<?php echo $this->get_field_id('custom_contact_form_id'); ?>" name="<?php echo $this->get_field_name('custom_contact_form_id'); ?>">
 <?php
-$args = array('post_type'=> 'wpcf7_contact_form');
-$the_query = new WP_Query( $args );
-if($the_query->have_posts() ) : while ( $the_query->have_posts() ) : $the_query->the_post();
-?>
-<option value="<?php the_ID(); ?>"><?php the_title(); ?></option>
-<?php endwhile; ?>
-<?php endif; wp_reset_postdata(); ?>
-</select>
-        </p>
-        <?php
+add_action( 'in_widget_form', '_esc_in_widget_form', 10, 3 );
+function _esc_in_widget_form( $widget, $return, $instance ) {
+	if ( !isset( $instance['classes'] ) ) $instance['classes'] = null;
+	$fields = '';
+	// show id field
+	if ( !isset( $instance['ids'] ) ) $instance['ids'] = null;
+	$fields .= "\t<p><label for='widget-{$widget->id_base}-{$widget->number}-ids'>".apply_filters( 'widget_css_classes_id', esc_html__( 'CSS ID', 'widget-css-classes' ) ).":</label>
+	<input type='text' name='widget-{$widget->id_base}[{$widget->number}][ids]' id='widget-{$widget->id_base}-{$widget->number}-ids' value='{$instance['ids']}' class='widefat' /></p>\n";
+	// show text field only
+	$fields .= "\t<p><label for='widget-{$widget->id_base}-{$widget->number}-classes'>".apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', 'widget-css-classes' ) ).":</label>
+	<input type='text' name='widget-{$widget->id_base}[{$widget->number}][classes]' id='widget-{$widget->id_base}-{$widget->number}-classes' value='{$instance['classes']}' class='widefat' /></p>\n";
+	do_action( 'widget_css_classes_form', $fields, $instance );
+	echo $fields;
+	return $instance;
+}
+add_filter( 'widget_update_callback', '_esc_widget_update_callback', 10, 2 );
+function _esc_widget_update_callback( $instance, $new_instance ) {
+	$instance['classes'] = $new_instance['classes'];
+	$instance['ids']     = $new_instance['ids'];
+	return $instance;
+}
+add_filter( 'dynamic_sidebar_params', '_esc_dynamic_sidebar_params' );
+function _esc_dynamic_sidebar_params( $params ) {
+	/*if ( is_admin() )
+		return ;*/
+
+	global $wp_registered_widgets, $widget_number;
+
+	$arr_registered_widgets = wp_get_sidebars_widgets(); // Get an array of ALL registered widgets
+	$this_id                = $params[0]['id']; // Get the id for the current sidebar we're processing
+	$widget_id              = $params[0]['widget_id'];
+	$widget_obj             = $wp_registered_widgets[$widget_id];
+	$widget_num             = $widget_obj['params'][0]['number'];
+	$widget_opt             = null;
+	// Default callback
+	if ( isset( $widget_obj['callback'][0]->option_name ) ) {
+		$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
+	}		
+	// Add classes
+	if ( isset( $widget_opt[$widget_num]['classes'] ) && !empty( $widget_opt[$widget_num]['classes'] ) ) {
+
+			// Add all classes
+			$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$widget_opt[$widget_num]['classes']} ", $params[0]['before_widget'], 1 );
+	
 	}
+	// Add id
+	if ( isset( $widget_opt[$widget_num]['ids'] ) && !empty( $widget_opt[$widget_num]['ids'] ) )
+		$params[0]['before_widget'] = preg_replace( '/id="[^"]*/', "id=\"{$widget_opt[$widget_num]['ids']}", $params[0]['before_widget'], 1 );
+
+	// Add first, last, even, and odd classes
+	if ( !$widget_number ) {
+		$widget_number = array();
+	}
+
+	if ( !isset( $arr_registered_widgets[$this_id] ) || !is_array( $arr_registered_widgets[$this_id] ) ) {
+		return $params;
+	}
+
+	if ( isset( $widget_number[$this_id] ) ) {
+		$widget_number[$this_id]++;
+	} else {
+		$widget_number[$this_id] = 1;
+	}
+
+	$class = 'class="';
+	/*show_id*/
+	$class .= esc_attr__( 'widget-', 'esc' ) .$widget_number[$this_id].' ';
+	/*show_location*/
+	$widget_first = apply_filters( 'widget_css_classes_first', esc_attr__( 'widget-first', 'widget-css-classes' ) );
+	$widget_last = apply_filters( 'widget_css_classes_last', esc_attr__( 'widget-last', 'widget-css-classes' ) );
+	if ( $widget_number[$this_id] == 1 ) {
+		$class .= $widget_first.' ';
+	}
+	if ( $widget_number[$this_id] == count( $arr_registered_widgets[$this_id] ) ) {
+		$class .= $widget_last.' ';
+	}
+	/*show_evenodd*/
+	$widget_even = apply_filters( 'widget_css_classes_even', esc_attr__( 'widget-even', 'widget-css-classes' ) );
+	$widget_odd  = apply_filters( 'widget_css_classes_odd', esc_attr__( 'widget-odd', 'widget-css-classes' ) );
+	$class .= ( ( $widget_number[$this_id] % 2 ) ? $widget_odd.' ' : $widget_even.' ' );
+	$params[0]['before_widget'] = str_replace( 'class="', $class, $params[0]['before_widget'] );
+	return $params;
 }
-function _esc_load_widgets(){
-	register_widget('Tabs_Widget');
-}
-add_action('widgets_init', '_esc_load_widgets');
+	
 ?>
