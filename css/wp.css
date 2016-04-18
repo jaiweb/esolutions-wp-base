@@ -1,24 +1,10 @@
 /* =WordPress Core
 -------------------------------------------------------------- */
-.alignnone {
-    margin: 5px 20px 20px 0;
-}
-
+/*.alignnone {margin: 5px 20px 20px 0;}*/
 .aligncenter,
-div.aligncenter {
-    display: block;
-    margin: 5px auto 5px auto;
-}
-
-.alignright {
-    float:right;
-    margin: 5px 0 20px 20px;
-}
-
-.alignleft {
-    float: left;
-    margin: 5px 20px 20px 0;
-}
+div.aligncenter {display: block;margin: 5px auto 5px auto;}
+.alignright {float:right;margin: 5px 0 20px 20px;}
+.alignleft {float: left;margin: 5px 20px 20px 0;}
 
 a img.alignright {
     float: right;
@@ -84,7 +70,6 @@ a img.aligncenter {
 	width: 1px;
 	overflow: hidden;
 }
-
 .screen-reader-text:focus {
 	background-color: #f1f1f1;
 	border-radius: 3px;
