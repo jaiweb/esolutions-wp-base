@@ -36,33 +36,6 @@ function customize_theme_page(){
 	$_esc_mode_maintenance	=	esc_textarea(get_option('_esc_mode_maintenance'));
 
 ?> 
-<style type="text/css">
-/*  Style for  tabs  main in  theme options */
-.ui-tabs.ui-tabs-vertical {padding: 0;width: 98%}
-.ui-tabs.ui-tabs-vertical .ui-widget-header {border: none;}
-.ui-tabs.ui-tabs-vertical .ui-tabs-nav {float: left;background: #F3F3F3;border-right: 1px solid #DFDFDF;min-height:525px;padding: 0;width: 10%}
-.ui-tabs.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active,.ui-tabs.ui-tabs-vertical .ui-tabs-nav li,.ui-tabs.ui-tabs-vertical .ui-tabs-nav li a{border-top-left-radius: 4px !important;border-top-right-radius: 0 !important;}
-.ui-tabs.ui-tabs-vertical .ui-tabs-nav li {clear: left;width: 100%;margin: 0 !important;border: 0;border-bottom: 1px solid #DFDFDF;border-radius:0;overflow: hidden;position: relative;z-index: 2;background: #EEEEEE;}
-.ui-tabs.ui-tabs-vertical .ui-tabs-nav li a {display: block;width: 100%;padding: 14px;border-top-left-radius: 4px;font-family: Arial;font-size: 12px;color: #333;font-weight: bold}
-.ui-tabs.ui-tabs-vertical .ui-tabs-nav li a:hover {cursor: pointer;background: #f9f9f9;}
-.ui-tabs.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {margin-bottom: 0.2em;padding-bottom: 0;border-right: 1px solid #fff;background: #fff;}
-.ui-tabs.ui-tabs-vertical .ui-tabs-nav li:last-child {margin-bottom: 10px;}
-.ui-tabs.ui-tabs-vertical .ui-tabs-panel {border-radius: 0 0 0 0;float: left;padding: 1% 1% 1% 2%;position: relative;width: 75%;}
-/* wrap style */
-.wrap.custom #message{display:none}
-.wrap.custom #savesettings-bottom{margin-top:10px}
-.wrap.custom h2{margin-bottom:10px}
-.wrap.custom h3.subtitle {color: #464646;font-size: 23px;line-height: 1em;padding: 0;}
-.wrap.custom th {color: #777777;width: 15%;}
-
-.custom input[type="text"], .custom textarea {width: 98%;margin:1% 0;padding:1%}
-.custom textarea:focus,.custom input[type=text]:focus{background:#FFFFCC;border:1px solid #333333}
-.upload > img {max-width: 200px;}
-.radio-container { border: 1px solid rgb(128, 128, 128);border-radius: 3px; float: left; padding: 5px; width: 50%;}
-
-.radio-container input { float: left;height: 17px; margin-right: 5px;} 
-.radio-container label { float: left; margin-right: 5px;} 
-</style>
 	<script>
 // script  for tabs main form theme options
 jQuery(document).ready(function(){
@@ -91,32 +64,38 @@ jQuery(document).ready(function(){
     })
     .addClass('ui-tabs-vertical ui-helper-clearfix');
 });
-</script>    
-	 
-<div class="wrap custom"> 
+</script>
+<div class="wrap esc"> 
     <div class="icon32" id="icon-themes"><br></div> 
     <h2>Theme Options</h2> 
 	<form id="result" name="result" method="post"> 
 		<div id="tabs"> 
 			<ul> 
-				<li><a href="#tabs-1">General</a></li> 
+				<li><a href="#tabs-1">General Setting</a></li> 
 				<li><a href="#tabs-2">Setting</a></li>  
 			</ul> 
             <div id="tabs-1"> 
-				<table class="form-table custom">
+				<table class="form-table">
 					<tr>
-						<th scope="row"><label for="esc_ga">Google Analitycs</label></th>
+						<th scope="row">
+							<label for="esc_ga">JavaScript code</label>
+							<span class="description">Paste your tracking code or any script you need.
+							This will be loaded in the footer.</span>
+						</th>
 						<td><textarea id="esc_ga" name="esc_ga" cols="50" rows="3"><?php echo  $_esc_ga ?></textarea></td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="esc_custom_css">Custom CSS</label></th>
+						<th scope="row">
+							<label for="esc_custom_css">CSS</label>
+							<span class="description">Place you custom css here</span>
+						</th>
 						<td><textarea id="esc_custom_css" name="esc_custom_css" cols="50" rows="3"><?php echo  $_esc_custom_css ?></textarea></td>
 					</tr>
                 </table> 
 			</div> 
             <div id="tabs-2"> 
 				<h3 class="subtitle">Setting</h3>				
-				<table class="form-table custom"> 
+				<table class="form-table"> 
 					<tr>
 						<th scope="row"><label for="esc_mode_maintenance">Maintenance</label></th>
 						<td><input id="esc_mode_maintenance" name="esc_mode_maintenance" type="checkbox" <?php echo  $_esc_mode_maintenance? 'checked':'' ?> /></td>

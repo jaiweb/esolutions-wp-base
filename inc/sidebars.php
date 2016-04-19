@@ -17,12 +17,12 @@ class _esc_sidebars {
 		wp_enqueue_script("jquery-ui-core");
 		wp_enqueue_script("jquery-ui-sortable");
 		
-		wp_enqueue_script("esolutions_sidebars_js", _ESC_TEMPLATE_DIR . "/js/sidebars.js");
-		wp_enqueue_style("esolutions_sidebars_style", _ESC_TEMPLATE_DIR . "/css/sidebars.css");
+		wp_enqueue_script("esolutions_sidebars_js", _ESC_JS . "sidebars.js");
+		wp_enqueue_style("esolutions_sidebars_style", _ESC_CSS . "sidebars.css");
 	}
 	public function _esc_sidebars_register_sidebars (){
 		global $wpdb;
-		$_esc_sidebars = $wpdb -> get_results("SELECT ID,post_content,post_title FROM $wpdb->posts WHERE post_status = 'publish'	AND post_type = 'esc-sidebars'");
+		$_esc_sidebars = $wpdb -> get_results("SELECT ID,post_content,post_title FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'esc-sidebars'");
 		if (!empty($_esc_sidebars)) {
 			foreach ((array) $_esc_sidebars as $sidebar) {
 				register_sidebar(	array(	'name'			=>	get_the_title($sidebar -> ID),
@@ -52,7 +52,6 @@ class _esc_sidebars {
 							'parent_item_colon' => '', 'menu_name' => __('Sidebars', 'esc')
 						);
 			$args = array(	'labels' => $labels,
-							//'menu_icon'=>_ESC_TEMPLATE_DIR."/images/admin/sidebar.png", 
 							'public' => true, 
 							'publicly_queryable' => true, 
 							'show_ui' => true, 
@@ -91,7 +90,7 @@ class _esc_sidebars {
 		$post_types = get_post_types('');
 		foreach ($post_types as $post_type) {
 			if ($post_type != "esc-sidebars") {
-				add_meta_box('mostrar_metabox', __('Custom Sidebar(s)', 'esc'), array(&$this, '_esc_sidebars_view_metabox'), $post_type, 'side', 'default');
+				add_meta_box('custom_sidebar_metabox', __('Custom Sidebar(s)', 'esc'), array(&$this, '_esc_sidebars_view_metabox'), $post_type, 'side', 'default');
 			}
 		}
 	}
@@ -165,11 +164,11 @@ class _esc_sidebars {
 			}
 		}
 		echo '</div>';		
-		echo '<a class="buttons btadd" href="javascript:return false;" title="'.__("Add new sidebar",'esc').'"><img src="'. _ESC_TEMPLATE_DIR .'/images/admin/mas2.png" /></a>';
-		echo '<a class="buttons btmodificar" href="'.admin_url().'/widgets.php" target="_blank" title="'.__("Edit widgets sidebars",'esc').'"><img src="'. _ESC_TEMPLATE_DIR .'/images/admin/editar.png" /></a>';
+		echo '<a class="buttons btadd" href="javascript:return false;" title="'.__("Add new sidebar",'esc').'"><img src="'. _ESC_IMAGES .'admin/mas2.png" /></a>';
+		echo '<a class="buttons btmodificar" href="'.admin_url().'/widgets.php" target="_blank" title="'.__("Edit widgets sidebars",'esc').'"><img src="'. _ESC_IMAGES .'admin/editar.png" /></a>';
 		wp_nonce_field("esc-sidebars", 'esc_sidebars_create_sidebar');
 		echo '<div class="clear"></div>';
-		echo '<div class="new_sidebar"><b>'.__("Add new sidebar",'esc').'</b><br/><input placeholder="'.__("Name sidebar",'esc').'" type="text" name="new_sidebar" /><input onclick="javascript:return false;" type="submit" class="create_sidebar" value="'.__("Crear",'esc').'" class="button-primary" /><img src="'. _ESC_TEMPLATE_DIR .'/images/admin/loading.gif" class="loading" /></div>';
+		echo '<div class="new_sidebar"><b>'.__("Add new sidebar",'esc').'</b><br/><input placeholder="'.__("Name sidebar",'esc').'" type="text" name="new_sidebar" /><input onclick="javascript:return false;" type="submit" class="create_sidebar" value="'.__("Crear",'esc').'" class="button-primary" /><img src="'. _ESC_IMAGES .'admin/loading.gif" class="loading" /></div>';
 		echo '<div class="clear"></div></div>';
 	}
 	public function dynamic_sidebar($post_id='', $default) {

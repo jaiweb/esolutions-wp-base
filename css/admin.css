@@ -1,1 +1,30 @@
+/*	Columns List Posts	*/
 .widefat th.column-featured-image {width: 70px;}
+/*	Additional Post Thumbnail	*/
+img.apt-thumbnail {max-width: 100%;height: auto;}
+/*  Style for  tabs  main in  theme options */
+.ui-tabs.ui-tabs-vertical {padding: 0;width: 98%}
+.ui-tabs.ui-tabs-vertical .ui-widget-header {border: none;}
+.ui-tabs.ui-tabs-vertical .ui-tabs-nav {float: left;background: #F3F3F3;border-right: 1px solid #DFDFDF;min-height:525px;padding: 0;width: 200px;/*10%*/}
+.ui-tabs.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active,.ui-tabs.ui-tabs-vertical .ui-tabs-nav li,.ui-tabs.ui-tabs-vertical .ui-tabs-nav li a{border-top-left-radius: 4px !important;border-top-right-radius: 0 !important;}
+.ui-tabs.ui-tabs-vertical .ui-tabs-nav li {clear: left;width: 100%;margin: 0 !important;border: 0;border-bottom: 1px solid #DFDFDF;border-radius:0;overflow: hidden;position: relative;z-index: 2;background: #EEEEEE;}
+.ui-tabs.ui-tabs-vertical .ui-tabs-nav li a {display: block;width: 100%;padding: 14px;border-top-left-radius: 4px;font-family: Arial;font-size: 12px;color: #333;font-weight: bold}
+.ui-tabs.ui-tabs-vertical .ui-tabs-nav li a:hover {cursor: pointer;background: #f9f9f9;}
+.ui-tabs.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {margin-bottom: 0.2em;padding-bottom: 0;border-right: 1px solid #fff;background: #fff;}
+.ui-tabs.ui-tabs-vertical .ui-tabs-nav li:last-child {margin-bottom: 10px;}
+.ui-tabs.ui-tabs-vertical .ui-tabs-panel {border-radius: 0 0 0 0;float: left;/*padding: 1% 1% 1% 2%;*/position: relative;/*width: 75%;*/}
+/* wrap style */
+.wrap.esc .form-table {font-family:"Open Sans",​sans-serif;}
+.wrap.esc .form-table label {display:block;color:#333}
+.wrap.esc .form-table .description {color: #666;font-size: 12px;font-weight: normal;}
+/*.wrap.esc #message{display:none}
+.wrap.esc #savesettings-bottom{margin-top:10px}
+.wrap.esc h2{margin-bottom:10px}
+.wrap.esc h3.subtitle {color: #464646;font-size: 23px;line-height: 1em;padding: 0;}
+.wrap.esc th {color: #777777;width: 15%;}
+.wrap.esc input[type="text"], .wrap.esc textarea {width: 98%;margin:1% 0;padding:1%}
+.wrap.esc textarea:focus, .wrap.esc input[type=text]:focus{background:#FFFFCC;border:1px solid #333333}
+.wrap.esc .upload > img {max-width: 200px;}
+.radio-container { border: 1px solid rgb(128, 128, 128);border-radius: 3px; float: left; padding: 5px; width: 50%;}
+.radio-container input { float: left;height: 17px; margin-right: 5px;} 
+.radio-container label { float: left; margin-right: 5px;}*/

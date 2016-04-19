@@ -2,8 +2,10 @@
 if ( !defined('ABSPATH') )
     die ( 'No direct script access allowed' );
 
-define('_ESC_TEMPLATE_DIR', get_bloginfo('template_directory'));
-define('_ESC_IMAGES', _ESC_TEMPLATE_DIR . '/images/');
+define('_ESC_THEME_DIR', get_bloginfo('template_directory'));
+define('_ESC_IMAGES', _ESC_THEME_DIR . '/images/');
+define('_ESC_CSS', _ESC_THEME_DIR . '/css/');
+define('_ESC_JS', _ESC_THEME_DIR . '/js/');
 define('_ESC_SIDEBAR_DEFAULT', 'sidebar-page');
 
 if ( ! function_exists( '_print' ) ) :
@@ -30,10 +32,13 @@ require_once('bootstrap.php');
 require_once('functions.php');
 require_once('shortcodes.php');
 require_once('nav-menu.php');
-require_once('sidebars.php');
+
 require_once('theme-options.php');
 /*require_once('widgets.php');*/
 require get_template_directory() . '/inc/widgets.php';
 /*require_once('posttypes.php');*/
 
+
+require_once('sidebars.php');
+require_once('additional-post-thumbnails.php');
 ?>
