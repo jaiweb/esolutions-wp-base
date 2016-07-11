@@ -1,0 +1,26 @@
+/*	checkout	*/
+
+.woocommerce .col2-set .col-1, 
+.woocommerce-page .col2-set .col-1, 
+.woocommerce .col2-set .col-2, 
+.woocommerce-page .col2-set .col-2 {float: none;width: 100%;}
+
+.woocommerce table.shop_table{border:none}
+.woocommerce table.shop_table thead th {background: #f7f6f7;text-transform:uppercase}
+.woocommerce table.shop_table td{padding: 1em 1.387em;text-align: left;vertical-align: top;border:none}
+.woocommerce table.shop_table tbody tr:nth-child(2n) td {background-color: #fbfbfb;}
+.woocommerce table.shop_table tbody th, 
+.woocommerce table.shop_table tfoot td, 
+.woocommerce table.shop_table tfoot th {border: none;font-weight: normal;}
+.woocommerce table.shop_table tfoot th {background:#f7f6f7}
+
+#add_payment_method #payment, 
+.woocommerce-checkout #payment {background: #f7f6f7;}
+#add_payment_method #payment div.payment_box:before, 
+.woocommerce-checkout #payment div.payment_box:before {border: medium none;}
+#add_payment_method #payment div.payment_box, 
+.woocommerce-checkout #payment div.payment_box {background: none;padding: 0 2.5em;}
+
+
+
+
