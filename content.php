@@ -12,8 +12,10 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php
+	if ( is_single() ) :
 		// Post thumbnail.
 		_esc_post_thumbnail();
+	endif;
 	?>
 
 	<header class="entry-header">
@@ -30,6 +32,7 @@
 		<?php _esc_entry_meta('header'); ?>
 		<?php edit_post_link( __( 'Edit', 'esc' ), ' <i class="fa fa-edit"></i> <span class="edit-link">', '</span>' ); ?>
 		<?php
+		if ( is_single() ) :
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
 				__( 'Continue reading %s', 'esc' ),
@@ -44,6 +47,9 @@
 				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'esc' ) . ' </span>%',
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) );
+		else :
+			the_excerpt();
+		endif;
 		?>
 	</div><!-- .entry-content -->
 

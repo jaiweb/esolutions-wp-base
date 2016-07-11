@@ -151,13 +151,7 @@ textarea,select,input {max-width: 100%;}
 	     -o-transition: background-color 0.3s linear;
 	        transition: background-color 0.3s linear;
 }
-
-.scroll-to-top:hover {
-	background: #f66a5c;
-	opacity: 0.8;
-}
-
-
+.scroll-to-top:hover {background: #f66a5c;opacity: 0.8;}
 /**/
 body{word-wrap: break-word;}
 /*

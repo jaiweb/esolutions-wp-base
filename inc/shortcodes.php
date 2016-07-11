@@ -6,12 +6,15 @@ if ( !defined('ABSPATH') )
 if ( !is_admin() )
     add_filter('widget_text', 'do_shortcode', 11);
 
-if(is_woocommerce())	:
-	remove_filter( 'the_content', 'wpautop' );
-	add_filter( 'the_content', 'wpautop' , 99);
-	add_filter( 'the_content', 'shortcode_unautop',100 );
+if ( class_exists( 'WooCommerce' ) )	:
 
-	add_filter('the_content', '_esc_filter_fix_shortcodes');
+	if(is_woocommerce())	:
+		remove_filter( 'the_content', 'wpautop' );
+		add_filter( 'the_content', 'wpautop' , 99);
+		add_filter( 'the_content', 'shortcode_unautop',100 );
+
+		add_filter('the_content', '_esc_filter_fix_shortcodes');
+	endif;
 endif;
 
 add_shortcode('_images', '_esc_shortcode__images');
