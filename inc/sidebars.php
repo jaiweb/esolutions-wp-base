@@ -89,7 +89,8 @@ class _esc_sidebars {
 	public function _esc_sidebars_add_metabox(){
 		$post_types = get_post_types('');
 		foreach ($post_types as $post_type) {
-			if ($post_type != "esc-sidebars") {
+			/*if ($post_type != "esc-sidebars") {*/
+			if ($post_type == 'page') {
 				add_meta_box('custom_sidebar_metabox', __('Custom Sidebar(s)', 'esc'), array(&$this, '_esc_sidebars_view_metabox'), $post_type, 'side', 'default');
 			}
 		}

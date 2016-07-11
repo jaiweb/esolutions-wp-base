@@ -8,7 +8,7 @@
  */
 ?>
 
-	<div id="sidebar" class="sidebar<?php	_esc_layout_class('sidebar')	?>">
+	<div id="sidebar" class="<?php echo	apply_filters('_esc_layout', 'sidebar')	?>">
 
 		<?php if ( is_active_sidebar( 'sidebar-page' ) ) : ?>
 			<div class="widget-area" role="complementary">

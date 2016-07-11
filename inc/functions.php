@@ -2,8 +2,28 @@
 if ( !defined('ABSPATH') )
     die ( 'No direct script access allowed' );
 
+add_filter('_esc_layout', '_esc_layout_class', 10, 2);
+function _esc_layout_class($layout, $sidebar=''){
+	global $_esc_config;
+	$class	=	'';
+	switch($layout){
+		case 'content-area':
+			if($sidebar=='sidebar-right')
+				$class	=	$_esc_config['content-area'];
+			else
+				$class	=	'container-fluid';
+			break;
+		case 'sidebar':
+			$class	=	$_esc_config['sidebar'];;
+			break;
+	}
+	if($class)
+		$class	=	' ' . $class;
 
-function _esc_layout_class($layout, $sidebar='sidebar-right'){
+	return $class;
+}
+
+function _esc_layout_class__old($layout, $sidebar='sidebar-right'){
 	$class	=	'';
 	switch($layout){
 		case 'content-area':

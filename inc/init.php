@@ -19,22 +19,23 @@ endif;
 
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'admin_print_scripts', 'print_emoji_detection_script', 100 );
-/*remove_action( 'wp_print_styles', 'print_emoji_styles', 100 );
-remove_action( 'admin_print_styles', 'print_emoji_styles', 100 );*/
 remove_action( 'wp_print_styles', 'print_emoji_styles');
 remove_action( 'admin_print_styles', 'print_emoji_styles');
 
 require_once('template-tags.php');
 require_once( 'customizer.php');
 
+require_once('config.php');
 require_once('bootstrap.php');
 require_once('nav-menu.php');
-require_once('sidebars.php');
+
 require_once('functions.php');
 
-require get_template_directory() . '/inc/widgets.php';
-
 require_once('woocommerce.php');
+
+require_once('sidebars.php');
+require_once('additional-post-thumbnails.php');
+require get_template_directory() . '/inc/widgets.php';
 
 require_once('theme-options.php');
 require_once('shortcodes.php');
@@ -42,14 +43,7 @@ return ;
 
 require_once( 'security.php');
 
-
-
-
-/*require_once('widgets.php');*/
-
 /*require_once('posttypes.php');*/
 
 
-
-require_once('additional-post-thumbnails.php');
 ?>
