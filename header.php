@@ -28,11 +28,11 @@
 <body <?php body_class(); ?>>
 <?php	do_action('_after_body');	?>
 <div id="page" class="hfeed site container">
-	<header id="masthead" class="site-header" role="banner">		
+	<header id="masthead" class="site-header row" role="banner">		
 		<div class="site-branding">
 			<?php	do_action('_before_navigation');	?>
 			<nav class="navbar navbar-default" role="navigation">
-				<div class="container-fluid">
+				<div class="container-fluidd">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 							<span class="sr-only">Toggle navigation</span>

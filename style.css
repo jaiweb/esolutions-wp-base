@@ -49,7 +49,7 @@ textarea,select,input {max-width: 100%;}
 .dropdown-submenu:hover > .dropdown-menu {display: block;}
 .dropdown-submenu:hover > a:after {border-left-color: #fff;}
 /**/
-.navbar-default .navbar-toggle {border: medium none;height: 40px;padding: 0;right: 0;width: 50px;}
+.navbar-default .navbar-toggle {border: medium none;height: 30px;padding: 0;right: 0;width: 50px;}
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {background-color: transparent;}
 .navbar-default .navbar-toggle .icon-bar {
     width: 31px;
@@ -172,6 +172,7 @@ html {
 .hentry .entry-footer {border-bottom: 1px solid #e0e4e6;border-top: 1px solid #e0e4e6;}
 .hentry .entry-footer span, .hentry .posted-on, .hentry .edit-link, .hentry .more-link {font-size: 12px;}
 */
+.container{background:#f8f8f8}
 /*	Media Queries	*/
 @media only screen and (min-width : 768px) {
     /* Make Navigation Toggle on Desktop Hover */

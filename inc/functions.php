@@ -2,19 +2,28 @@
 if ( !defined('ABSPATH') )
     die ( 'No direct script access allowed' );
 
-add_filter('_esc_layout', '_esc_layout_class', 10, 2);
+add_filter('_esc_layout', '_esc_layout_class', 100, 2);
 function _esc_layout_class($layout, $sidebar=''){
 	global $_esc_config;
+	/*_print($_esc_config);*/
 	$class	=	'';
+	
+	/*_print(get_option( 'show_on_front' ));*/
+	$_show_on_front	=	get_option( 'show_on_front' );
+/*_print($_show_on_front);*/
+/*echo $_show_on_front;*/
+/*	if( 'posts' == $_show_on_front && $layout=='' )
+		$sidebar	=	'sidebar-right';*/
+
 	switch($layout){
 		case 'content-area':
-			if($sidebar=='sidebar-right')
+			if($sidebar=='sidebar-right' || 'posts' == $_show_on_front && !is_page() )
 				$class	=	$_esc_config['content-area'];
 			else
 				$class	=	'container-fluid';
 			break;
 		case 'sidebar':
-			$class	=	$_esc_config['sidebar'];;
+			$class	=	$_esc_config['sidebar'];
 			break;
 	}
 	if($class)

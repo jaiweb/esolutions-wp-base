@@ -7,6 +7,11 @@ define('_ESC_IMAGES', _ESC_THEME_DIR . '/images/');
 define('_ESC_CSS', _ESC_THEME_DIR . '/css/');
 define('_ESC_JS', _ESC_THEME_DIR . '/js/');
 define('_ESC_SIDEBAR_DEFAULT', 'sidebar-page');
+global $_esc_config;
+$_esc_config	=	array(
+						'content-area'	=>	'col-sm-8 col-md-9',
+						'sidebar'	=>	'col-sm-4 col-md-3',	
+					);
 
 if ( ! function_exists( '_print' ) ) :
     function _print($data,$hide=false){

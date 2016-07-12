@@ -18,7 +18,7 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
+	<section id="primary" class="<?php	echo apply_filters('_esc_layout', 'content-area')	?>	?>">
 		<main id="main" class="site-main" role="main">
 
 		<?php if ( have_posts() ) : ?>
