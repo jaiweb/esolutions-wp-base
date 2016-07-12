@@ -209,4 +209,20 @@ function _esc_sidebars_dynamic_sidebar($default='sidebar-page'){
 
 	return $return;
 }
+
+function _esc_sidebars_is_active_sidebar($default='sidebar-page'){
+	global $post;
+	$post_id	=	$post -> ID;
+	$sidebars	=	get_post_meta($post_id, "esc_sidebars", true);
+	/*_print($sidebars);*/
+	$sidebars	=	empty($sidebars) ? array($default) : explode(',', $sidebars);
+	foreach ($sidebars as $sidebar) {
+		if($sidebar=='esc-sidebars-default')
+			$sidebar	=	_ESC_SIDEBAR_DEFAULT;
+
+		if (is_active_sidebar($sidebar))
+			return true;
+	}
+	return false;
+}
 ?>

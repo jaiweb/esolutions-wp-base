@@ -54,9 +54,19 @@ define('WP_AUTO_UPDATE_CORE', false);
  * will check the referrer when a user posts a comment to ensure they are not a BOT.
 */
 function check_referrer() {
-   if (!isset($_SERVER['HTTP_REFERER']) || $_SERVER['HTTP_REFERER'] == “”) {
+   if (!isset($_SERVER['HTTP_REFERER']) || $_SERVER['HTTP_REFERER'] == '') {
        wp_die( __('Please enable referrers in your browser, or, if you\'re a spammer, bugger off!') );
    }
 }
 add_action('check_comment_flood', 'check_referrer');
+// Remove WP Version From Styles	
+add_filter( 'style_loader_src', '_esc_remove_ver_css_js', 9999 );
+// Remove WP Version From Scripts
+add_filter( 'script_loader_src', '_esc_remove_ver_css_js', 9999 );
+// Function to remove version numbers
+function _esc_remove_ver_css_js( $src ) {
+	if ( strpos( $src, 'ver=' ) )
+		$src = remove_query_arg( 'ver', $src );
+	return $src;
+}
 ?>

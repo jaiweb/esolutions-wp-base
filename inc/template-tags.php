@@ -252,3 +252,14 @@ add_action('_after_header','_esc_after_header');
 function _esc_after_header(){
 	echo '';
 }
+add_filter('the_content','_esc_table_class');
+add_filter('the_excerpt','_esc_table_class');
+function _esc_table_class($html){
+	$classes = 'table'; // separated by spaces, e.g. 'img image-link'  // check if there are already classes assigned to the anchor
+	if ( preg_match('/<table.*? class=".*?">/', $html) ) {
+		$html = preg_replace('/(<table.*? class=".*?)(".*?>)/', '$1 ' . $classes . '$2', $html);
+	} else {
+		$html = preg_replace('/(<table.*?)>/', '$1 class="' . $classes . '" >', $html);  
+	}
+	return $html;
+}
