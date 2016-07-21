@@ -263,3 +263,4 @@ function _esc_table_class($html){
 	}
 	return $html;
 }
+add_filter( 'get_calendar', '_esc_table_class');

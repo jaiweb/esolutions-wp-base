@@ -19,7 +19,7 @@ function _esc_filter_body_class_browser_body_class($classes) {
   return $classes;
 }
 
-add_action('admin_enqueue_scripts', '_esc_admin_enqueue_scripts');
+
 
     add_filter('manage_posts_columns', '_esc_posts_columns_id', 5);
     add_action('manage_posts_custom_column', '_esc_posts_custom_id_columns', 5, 2);

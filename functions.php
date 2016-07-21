@@ -74,7 +74,7 @@ function _esc_setup() {
 	set_post_thumbnail_size( 825, 510, true );
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
-		'main'	=>	__( 'Main Menu',      'esc' ),
+		'main'	=>	__( 'Main Menu',   'esc' ),
 		'footer'=>	__( 'Footer Menu', 'esc' ),
 	) );
 	/*
@@ -89,9 +89,9 @@ function _esc_setup() {
 	 *
 	 * See: https://codex.wordpress.org/Post_Formats
 	 */
-	add_theme_support( 'post-formats', array(
+	/*add_theme_support( 'post-formats', array(
 		'aside', 'image', 'video', 'quote', 'link', 'gallery', 'status', 'audio', 'chat'
-	) );
+	) );*/
 	/*$color_scheme  = _esc_get_color_scheme();
 	$default_color = trim( $color_scheme[0], '#' );
 	// Setup the WordPress core custom background feature.
@@ -192,7 +192,8 @@ function _esc_scripts() {
 	wp_enqueue_style( 'esc-fonts', get_template_directory_uri() . '/css/fonts.css', array(), '' );	
 	
 	wp_enqueue_style( 'esc-wp', get_template_directory_uri() . '/css/wp.css', array(), '' );	
-	wp_enqueue_style( 'esc-bs', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '' );
+	wp_enqueue_style( 'esc-bs-min', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '' );
+	wp_enqueue_style( 'esc-bs', get_template_directory_uri() . '/css/bs.css', array(), '' );
 	wp_enqueue_style( 'esc-style', get_stylesheet_uri() );
 	
 	// Load the Internet Explorer specific stylesheet.

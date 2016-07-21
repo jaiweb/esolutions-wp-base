@@ -12,13 +12,14 @@ if ( ! function_exists( '_esc_layout_class' ) ) :
 				$class	=	$_esc_config['content-area'];
 				break;
 			case 'content-area':
-				if($sidebar=='sidebar-right' || 'posts' == $_show_on_front && !is_page() )
+				/*if($sidebar=='sidebar-right' || 'posts' == $_show_on_front && !is_page() )*/
+				if($sidebar=='sidebar-right' || 'posts' == $_show_on_front || _esc_is_blog() )
 					$class	=	$_esc_config['content-area'];
 				else
 					$class	=	'container-fluid';
 				break;
 			case 'sidebar':
-				$class	=	$_esc_config['sidebar'];
+				$class	=	'sidebar ' . $_esc_config['sidebar'];
 				break;
 		}
 		if($class)
@@ -28,8 +29,14 @@ if ( ! function_exists( '_esc_layout_class' ) ) :
 	}
 	add_filter('_esc_layout', '_esc_layout_class', 100, 2);
 endif;
+if ( ! function_exists( '_esc_is_blog' ) ) :
+	function _esc_is_blog () {
+		return ( is_archive() || is_author() || is_category() || is_home() || is_single() || is_tag()) && 'post' == get_post_type();
+	}
+endif;
+add_action('admin_enqueue_scripts', '_esc_admin_enqueue_scripts');
 function _esc_admin_enqueue_scripts() {
-    wp_enqueue_style('esc-admin-css', get_template_directory_uri() . '/css/admin.css');
+    wp_enqueue_style('esc-admin-css', get_template_directory_uri() . '/css/admin/admin.css');
 }
 /*
 Disqus outputting JS on parts of your wordpress website you don’t want?
@@ -54,4 +61,13 @@ converts URI, www, ftp, and email addresses into clickable links within the_cont
 */
 add_filter('the_content', 'make_clickable');
 add_filter('the_excerpt', 'make_clickable');
+add_action( 'admin_notices', 'wps_print_admin_pagehook' );
+function wps_print_admin_pagehook(){
+    global $hook_suffix;
+    if( !current_user_can( 'manage_options') )
+        return;
+    ?>
+    <div class="updated notice notice-success is-dismissible"><p><?php echo $hook_suffix; ?></p></div>
+    <?php
+}
 ?>

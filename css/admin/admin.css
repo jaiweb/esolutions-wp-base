@@ -3,6 +3,9 @@
 /*	Additional Post Thumbnail	*/
 img.apt-thumbnail {max-width: 100%;height: auto;}
 /*  Style for  tabs  main in  theme options */
+
+.ui-widget-content {border: 1px solid #aaaaaa/*{borderColorContent}*/;background: #ffffff/*{bgColorContent};url(images/ui-bg_flat_75_ffffff_40x100.png)/*{bgImgUrlContent}*/ 50%/*{bgContentXPos}*/ 50%/*{bgContentYPos}*/ repeat-x/*{bgContentRepeat}*/; */color: #222222/*{fcContent}*/;}
+.ui-tabs .ui-tabs-panel {padding: 1em 1.4em;display: block;border-width: 0;background: none;}
 .ui-tabs.ui-tabs-vertical {padding: 0;width: 98%}
 .ui-tabs.ui-tabs-vertical .ui-widget-header {border: none;}
 .ui-tabs.ui-tabs-vertical .ui-tabs-nav {float: left;background: #F3F3F3;border-right: 1px solid #DFDFDF;min-height:525px;padding: 0;width: 200px;/*10%*/}
@@ -12,7 +15,7 @@ img.apt-thumbnail {max-width: 100%;height: auto;}
 .ui-tabs.ui-tabs-vertical .ui-tabs-nav li a:hover {cursor: pointer;background: #f9f9f9;}
 .ui-tabs.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {margin-bottom: 0.2em;padding-bottom: 0;border-right: 1px solid #fff;background: #fff;}
 .ui-tabs.ui-tabs-vertical .ui-tabs-nav li:last-child {margin-bottom: 10px;}
-.ui-tabs.ui-tabs-vertical .ui-tabs-panel {border-radius: 0 0 0 0;float: left;/*padding: 1% 1% 1% 2%;*/position: relative;/*width: 75%;*/}
+.ui-tabs.ui-tabs-vertical .ui-tabs-panel {border-radius: 0 0 0 0;float: left;/*padding: 1% 1% 1% 2%;*/position: relative;width: 75%;}
 /* wrap style */
 .wrap.esc .form-table {font-family:"Open Sans",​sans-serif;}
 .wrap.esc .form-table label {display:block;color:#333}

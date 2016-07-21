@@ -32,27 +32,24 @@
 		<div class="site-branding">
 			<?php	do_action('_before_navigation');	?>
 			<nav class="navbar navbar-default" role="navigation">
-				<div class="container-fluidd">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						
-					</div>
-					<?php
-						wp_nav_menu( array(
-							'theme_location'	=>	'main',
-							'container_id'		=>	'navbar',
-							'container_class' 	=>	'navbar-collapse collapse',
-							'menu_class'      	=>	'nav navbar-nav',
-							'fallback_cb'       =>	'wp_bootstrap_navwalker::fallback',
-							'walker'			=>	new wp_bootstrap_navwalker()
-						) );
-					?>
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
 				</div>
+				<?php
+					wp_nav_menu( array(
+						'theme_location'	=>	'main',
+						'container_id'		=>	'navbar',
+						'container_class' 	=>	'navbar-collapse collapse',
+						'menu_class'      	=>	'nav navbar-nav',
+						'fallback_cb'       =>	'wp_bootstrap_navwalker::fallback',
+						'walker'			=>	new wp_bootstrap_navwalker()
+					) );
+				?>
 			</nav>
 			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'esc' ); ?></a>
 			<?php	do_action('_after_navigation');	?>

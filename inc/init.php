@@ -9,8 +9,8 @@ define('_ESC_JS', _ESC_THEME_DIR . '/js/');
 define('_ESC_SIDEBAR_DEFAULT', 'sidebar-page');
 global $_esc_config;
 $_esc_config	=	array(
-						'content-area'	=>	'col-sm-8 col-md-9',
-						'sidebar'	=>	'col-sm-4 col-md-3',	
+						'content-area'	=>	'col-sm-8 col-md-9 col-sm-npl',
+						'sidebar'	=>	'col-sm-4 col-md-3 col-sm-npr',	
 					);
 
 if ( ! function_exists( '_print' ) ) :
