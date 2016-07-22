@@ -27,10 +27,11 @@
 			endif;
 		?>
 	</header><!-- .entry-header -->
-
-	<div class="entry-content">
+	<div class="entry-meta">
 		<?php _esc_entry_meta('header'); ?>
-		<?php edit_post_link( __( 'Edit', 'esc' ), ' <i class="fa fa-edit"></i> <span class="edit-link">', '</span>' ); ?>
+		<?php edit_post_link( __( 'Edit', 'esc' ), '<span class="edit-link"><i class="fa fa-edit"></i>', '</span>' ); ?>
+	</div>
+	<div class="entry-content">
 		<?php
 		if ( is_single() ) :
 			/* translators: %s: Name of current post */
@@ -60,7 +61,7 @@
 		endif;
 	?>
 
-	<footer class="entry-footer">
+	<footer class="entry-footer entry-meta">
 		<?php _esc_entry_meta(); ?>
 		
 	</footer><!-- .entry-footer -->

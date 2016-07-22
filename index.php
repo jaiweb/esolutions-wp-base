@@ -42,9 +42,13 @@ get_header(); ?>
 			endwhile;
 
 			// Previous/next page navigation.
-			the_posts_pagination( array(
+			/*the_posts_pagination( array(
 				'prev_text'          => __( 'Previous page', 'esc' ),
 				'next_text'          => __( 'Next page', 'esc' ),
+				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'esc' ) . ' </span>',
+			) );*/
+			
+			_esc_get_the_posts_pagination( array(
 				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'esc' ) . ' </span>',
 			) );
 

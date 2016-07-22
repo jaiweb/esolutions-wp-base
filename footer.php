@@ -12,7 +12,7 @@
 	</div><!-- .site-content -->
 	<footer id="colophon" class="site-footer row" role="contentinfo">
 		<div class="clearfix">
-			<div class="col-sm-8">
+			<div class="col-sm-8 col-sm-npl">
 				<?php
 					wp_nav_menu( array(
 						'theme_location'	=>	'footer',
@@ -24,7 +24,7 @@
 					) );
 				?>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-4 col-sm-npr">
 				<div class="site-info ">
 					<div class="social-icons">
 						<a href="#"><i class="fa fa-instagram"></i></a>
@@ -36,7 +36,7 @@
 				</div><!-- .site-info -->
 			</div>
 		</div>
-		<div class="text-center"><a href="<?php echo esc_url( __( 'https://solutionswebonline.com/toolpress/themes/#base', 'esc' ) ); ?>"><?php printf( __( 'By %s', 'esc' ), 'E-Solutions Consulting Bolivia' ); ?></a></div>
+		<div class="copyright"><a href="<?php echo esc_url( __( 'https://solutionswebonline.com/toolpress/themes/#base', 'esc' ) ); ?>"><?php printf( __( 'By %s', 'esc' ), 'E-Solutions Consulting' ); ?></a></div>
 	</footer><!-- .site-footer -->
 </div><!-- .site -->
 <div class="scroll-to-top"><i class="fa fa-angle-up"></i></div>

@@ -2,7 +2,7 @@
 if ( !defined('ABSPATH') )
     die ( 'No direct script access allowed' );
 
-define('_ESC_THEME_DIR', get_bloginfo('template_directory'));
+define('_ESC_THEME_DIR', get_template_directory_uri());
 define('_ESC_IMAGES', _ESC_THEME_DIR . '/images/');
 define('_ESC_CSS', _ESC_THEME_DIR . '/css/');
 define('_ESC_JS', _ESC_THEME_DIR . '/js/');

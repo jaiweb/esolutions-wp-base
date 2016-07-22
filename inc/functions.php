@@ -70,4 +70,40 @@ function wps_print_admin_pagehook(){
     <div class="updated notice notice-success is-dismissible"><p><?php echo $hook_suffix; ?></p></div>
     <?php
 }
+add_filter( 'navigation_markup_template', '_esc_navigation_markup_template', 10, 2);
+function _esc_navigation_markup_template($template, $class ){
+	$template = '
+	<nav class="navigation %1$s" role="navigation">
+		<h2 class="screen-reader-text">%2$s</h2>
+		<ul class="pagination pagination-lg">%3$s</ul>
+	</nav>';
+	return $template;
+}
+function _esc_get_the_posts_pagination( $args = array() ) {
+	$navigation = '';
+
+	// Don't print empty markup if there's only one page.
+	if ( $GLOBALS['wp_query']->max_num_pages > 1 ) {
+		$args = wp_parse_args( $args, array(
+			'mid_size'			=>	1,
+			'prev_text' => __('&laquo;'),
+			'next_text' => __('&raquo;'),
+			'screen_reader_text'=>	__( 'Posts navigation' ),
+			'type' 				=>	'array'
+		) );
+		// Set up paginated links.
+		$links = paginate_links( $args );
+		if ( $links ) {
+			$_links	=	'';
+			foreach($links as $link){
+				$active	=	'';
+				if ( preg_match('/current/', $link) )
+					$active	=	' class="active"';
+				$_links	.=	'<li' . $active . '>' . $link . '</li>';
+			}
+			$navigation = _navigation_markup( $_links, 'pagination', $args['screen_reader_text'] );
+		}
+	}
+	echo $navigation;
+}
 ?>

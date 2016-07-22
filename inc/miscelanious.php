@@ -150,7 +150,7 @@ function  custom_login_title() {
 add_filter('login_headertitle', 'custom_login_title');
 function loginLogo() {
     echo '<style type="text/css">
-        h1 a { background-image:url('.get_bloginfo('template_directory').'/images/logo.gif) !important; }
+        h1 a { background-image:url('.get_template_directory_uri().'/images/logo.gif) !important; }
     </style>';
 }
 add_action('login_head', 'loginLogo');
@@ -358,7 +358,7 @@ add_filter('the_title', 'wps_highlight_results');
 */
 add_filter( 'avatar_defaults', '_esc_avatar_defaults' );
 function _esc_avatar_defaults ($avatar_defaults) {
-     $myavatar = get_bloginfo('template_directory') . '/images/default.jpg';
+     $myavatar = get_template_directory_uri() . '/images/default.jpg';
      $avatar_defaults[$myavatar] = "Default Gravatar";
      return $avatar_defaults;
 }
