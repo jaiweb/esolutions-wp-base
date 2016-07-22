@@ -159,6 +159,12 @@ function _esc_fonts_url() {
 	if ( 'off' !== _x( 'on', 'Inconsolata font: on or off', 'esc' ) ) {
 		$fonts[] = 'Inconsolata:400,700';
 	}
+	if ( 'off' !== _x( 'on', 'Inconsolata font: on or off', 'esc' ) ) {
+		$fonts[] = 'Lato:400,300,100,100italic,300italic,400italic,700,700italic,900italic,900';
+	}
+	if ( 'off' !== _x( 'on', 'Inconsolata font: on or off', 'esc' ) ) {
+		$fonts[] = 'Raleway:400,100,100italic,200,200italic,300,300italic,400italic,500,500italic,600,600italic,700,900,800italic,800,700italic,900italic';
+	}
 	/* translators: To add an additional character subset specific to your language, translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language. */
 	$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'esc' );
 	if ( 'cyrillic' == $subset ) {
@@ -186,7 +192,7 @@ endif;
  */
 function _esc_scripts() {
 	// Add custom fonts, used in the main stylesheet.
-	/*wp_enqueue_style( 'esc-fonts', _esc_fonts_url(), array(), null );*/
+	wp_enqueue_style( 'esc-google-fonts', _esc_fonts_url(), array(), null );
 	wp_enqueue_style( 'esc-genericons', get_template_directory_uri() . '/css/genericons.css', array(), '3.2' );
 	wp_enqueue_style( 'esc-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '' );
 	wp_enqueue_style( 'esc-fonts', get_template_directory_uri() . '/css/fonts.css', array(), '' );	
